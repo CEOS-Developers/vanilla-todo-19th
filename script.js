@@ -1,1 +1,10 @@
-//CEOS 19기 프론트엔드 파이팅🔥 ദ്ദി˶ˊᵕˋ˵)
+// 오늘 날짜
+const today = new Date();
+const options = {
+  month: "long",
+  day: "numeric",
+  weekday: "long",
+};
+const dateString = today.toLocaleDateString("ko-KR", options);
+
+document.getElementById("todayDate").innerText = dateString;
