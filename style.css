@@ -1,1 +1,64 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+body {
+  background-color: rgb(231, 244, 253);
+  padding: 10px;
+}
+
+.canvas {
+  width: 375px;
+  height: 660px;
+  background-color: #f5f5f5f5;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+  padding: 20px;
+}
+
+.title {
+  margin-top: 0;
+}
+
+.input {
+  background-color: #d9d9d9d9;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 365px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.list-container {
+  background-color: white;
+  border-radius: 10px;
+  width: 365px;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.list-container ul {
+  padding: 5px 15px;
+  margin: 0;
+  width: 100%;
+}
+
+.todo-item {
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.todo-text {
+  font-size: 15px;
+}
+
+.delete-btn {
+  margin-left: auto;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
