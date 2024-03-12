@@ -26,7 +26,6 @@ function showToDo(newToDo) {
 
   checkbox.type = 'checkbox';
   span.innerText = newToDo;
-  deleteButton.innerText = '삭제하기';
   deleteButton.addEventListener('click', deleteToDo);
 
   listItem.appendChild(checkbox);
@@ -40,3 +39,16 @@ function deleteToDo(event) {
   const selectedItem = event.target.parentElement; // 삭제 버튼의 부모 항목을 li에 저장
   selectedItem.remove();
 }
+
+// 오늘의 날짜
+document.addEventListener('DOMContentLoaded', function () {
+  const today = new Date();
+  const date =
+    today.getFullYear() +
+    '-' +
+    (today.getMonth() + 1).toString().padStart(2, '0') +
+    '-' +
+    today.getDate().toString().padStart(2, '0');
+
+  document.getElementById('date').innerText = date;
+});

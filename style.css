@@ -3,7 +3,7 @@ body {
   padding: 10px;
 }
 
-.canvas {
+.container {
   width: 375px;
   height: 660px;
   background-color: #f5f5f5f5;
@@ -24,6 +24,7 @@ body {
   padding: 5px;
   width: 365px;
   height: 20px;
+  line-height: 20px;
   cursor: pointer;
 }
 
@@ -55,10 +56,16 @@ body {
 
 .delete-btn {
   margin-left: auto;
-  background-color: #ff6b6b;
+  background-image: url('img/trash.svg');
+  background-color: transparent;
   color: white;
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
