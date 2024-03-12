@@ -19,18 +19,25 @@ function makeHistoryElement() {
   doneSpan.textContent = countDone.toLocaleString();
   doneSpan.className = "countDone";
 
-  historyDiv.appendChild(workInProgress);
-  historyDiv.appendChild(workInProgressSpan);
-  historyDiv.appendChild(done);
-  historyDiv.appendChild(doneSpan);
+  historyDiv.append(workInProgress, workInProgressSpan, done, doneSpan);
 
   const historyElement = document.querySelectorAll(".history")[0];
-  historyElement.appendChild(historyH2);
-  historyElement.appendChild(historyDiv);
+  historyElement.append(historyH2, historyDiv);
+}
+
+function getTodayDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  const dateElement = document.querySelector(".date");
+  dateElement.append(`${year}.${month}.${day}`);
 }
 
 function render() {
   makeHistoryElement();
+  getTodayDate();
 }
 
 render();
