@@ -1,5 +1,23 @@
+function makeListElement(id, description) {
+  const descriptionSpan = document.createElement("span");
+  descriptionSpan.textContent = description;
+  descriptionSpan.className = "description";
+
+  const doneIcon = document.createElement("i");
+  doneIcon.textContent = "DONE";
+  doneIcon.className = `doneButton ${id}`;
+  // 삭제하기 기능 추가
+  doneIcon.addEventListener("click", function () {
+    handleDone(id);
+  });
+  const li = document.createElement("li");
+  li.append(descriptionSpan, doneIcon);
+  const ul = document.querySelector("ul");
+  ul.appendChild(li);
+}
+
 function makeHistoryElement() {
-  let countWorkInProgress = 0;
+  let countSchedule = 0;
   let countDone = 0;
 
   const historyH2 = document.createElement("h2");
@@ -8,18 +26,18 @@ function makeHistoryElement() {
   const historyDiv = document.createElement("div");
   historyDiv.className = "detail";
 
-  const workInProgress = document.createElement("i");
-  workInProgress.textContent = "WORK IN PROGRESS";
-  const workInProgressSpan = document.createElement("span");
-  workInProgressSpan.textContent = countWorkInProgress.toLocaleString();
-  workInProgressSpan.className = "workInProgress";
+  const schedule = document.createElement("i");
+  schedule.textContent = "SCHEDULE";
+  const scheduleSpan = document.createElement("span");
+  scheduleSpan.textContent = countSchedule.toLocaleString();
+  scheduleSpan.className = "countSchedule";
   const done = document.createElement("i");
   done.textContent = "DONE";
   const doneSpan = document.createElement("span");
   doneSpan.textContent = countDone.toLocaleString();
   doneSpan.className = "countDone";
 
-  historyDiv.append(workInProgress, workInProgressSpan, done, doneSpan);
+  historyDiv.append(schedule, scheduleSpan, done, doneSpan);
 
   const historyElement = document.querySelectorAll(".history")[0];
   historyElement.append(historyH2, historyDiv);
@@ -35,6 +53,9 @@ function getTodayDate() {
   dateElement.append(`${year}.${month}.${day}`);
 }
 
+function handleModal(){
+  
+}
 function render() {
   makeHistoryElement();
   getTodayDate();
