@@ -1,1 +1,13 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+html {
+  min-width: 375px;
+}
+header {
+  padding: 1.5rem;
+  background-color: aliceblue;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
