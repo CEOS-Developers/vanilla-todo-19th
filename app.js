@@ -10,11 +10,11 @@ let doneList =
 
 const todoListAreaDiv = document
   .querySelector('.todo-area')
-  .querySelector('.div');
+  .querySelector('.showing-list-area');
 
 const doneListAreaDiv = document
   .querySelector('.done-area')
-  .querySelector('.div');
+  .querySelector('.showing-list-area');
 
 const inputBox = document.querySelector('.todo-input');
 
@@ -49,6 +49,7 @@ function handleSubmitInputBoxByEnterKey() {
 
   todoList.push(inputBoxValue);
   addNewTodoListToShowingUI(inputBoxValue); // UI에 반영해 주었음
+  inputBox.value = '';
 }
 
 //사용자가 input box에 내용을 입력하고 submit 버튼을 눌러 제출할 때 트리거 되는 함수. 역시 내부에서 유효성 검사를 수행.
