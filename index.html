@@ -7,9 +7,34 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="reset.css" />
   </head>
-
-  <body>
-    <div class="container"></div>
+  <section>
+    <header>
+      <h1>Todo</h1>
+    </header>
+    <section class="myToDos"></section>
+    <hr />
+    <section class="history">
+      <nav class="date">
+        <button type="button">〈</button>
+        <p>8월 4일</p>
+        <button type="button">〉</button>
+      </nav>
+      <section class="list">
+        <header>
+          <h2>실시간</h2>
+          <form>
+            <input name="toDo" type="checkbox" id="toDo" checked />
+            <label for="toDo">TODO</label>
+            <input name="done" type="checkbox" id="done" checked />
+            <label for="done">DONE</label>
+          </form>
+        </header>
+      <ul></ul>
+    </section>
+  </section>
+  <footer>
+    <button type="button">Edit</button>
+  </footer>
   </body>
   <script src="script.js"></script>
 </html>
