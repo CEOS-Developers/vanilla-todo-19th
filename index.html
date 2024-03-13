@@ -5,36 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="reset.css" />
   </head>
-  <section>
+  <body>
     <header>
-      <h1>Todo</h1>
+      <h1>TODO LIST</h1>
     </header>
-    <section class="myToDos"></section>
+    <section class="history"></section>
     <hr />
-    <section class="history">
-      <nav class="date">
-        <button type="button">〈</button>
-        <p>8월 4일</p>
-        <button type="button">〉</button>
-      </nav>
+    <section class="edit">
+      <nav class="date"></nav>
       <section class="list">
-        <header>
-          <h2>실시간</h2>
-          <form>
-            <input name="toDo" type="checkbox" id="toDo" checked />
-            <label for="toDo">TODO</label>
-            <input name="done" type="checkbox" id="done" checked />
-            <label for="done">DONE</label>
-          </form>
-        </header>
-      <ul></ul>
+        <form>
+          <input name="schedule" type="checkbox" id="schedule" checked />
+          <label for="schedule">SCHEDULE</label>
+          <input name="done" type="checkbox" id="done" checked />
+          <label for="done">DONE</label>
+        </form>
+        <ul></ul>
+      </section>
+    </section>
+    <footer>
+      <button type="button">EDIT</button>
+    </footer>
+  </body>
+  <section class="editModalBackground">
+    <section class="editModal">
+      <h2>Things to be done</h2>
+      <form>
+        <label for="description">Description</label>
+        <input type="text" id="addDescription" />
+      </form>
+      <div class="editModalBtn">
+        <button type="button" class="saveBtn">SAVE</button>
+        <button type="button" class="closeBtn">CLOSE</button>
+      </div>
     </section>
   </section>
-  <footer>
-    <button type="button">Edit</button>
-  </footer>
-  </body>
   <script src="script.js"></script>
 </html>
