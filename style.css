@@ -1,9 +1,8 @@
 @import '../reset.css';
 
 @font-face {
-  font-family: 'SDSamliphopangche_Outline';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff')
-    format('woff');
+  font-family: 'omyu_pretty';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -13,7 +12,7 @@ html {
 }
 
 body {
-  font-family: 'SDSamliphopangche_Outline';
+  font-family: 'omyu_pretty';
 }
 
 header {
@@ -110,6 +109,7 @@ i:nth-child(3) {
   border: 1px solid rgb(33, 109, 176);
 
   color: rgb(33, 109, 176);
+  font-family: 'omyu_pretty';
 }
 
 /* form*/
@@ -169,7 +169,7 @@ li {
   background-color: rgb(250, 242, 242);
 
   border-radius: 0.2rem;
-  fonst-size: 2rem;
+  font-size: 1.8rem;
 }
 
 /* footer */
@@ -192,7 +192,7 @@ footer > button {
   color: white;
 
   font-size: 1rem;
-  font-family: 'SDSamliphopangche_Outline';
+  font-family: 'omyu_pretty';
 }
 
 /*editModal section*/
@@ -265,7 +265,7 @@ footer > button {
 
 .editModalBtn > .saveBtn {
   padding: 0.5rem;
-  font-family: 'SDSamliphopangche_Outline';
+  font-family: 'omyu_pretty';
   border: 0;
   border-radius: 0.5rem;
   font-size: 1.2rem;
@@ -274,7 +274,7 @@ footer > button {
 }
 
 .editModalBtn > .closeBtn {
-  font-family: 'SDSamliphopangche_Outline';
+  font-family: 'omyu_pretty';
   padding: 0.5rem;
   border: 0;
   border-radius: 0.5rem;
