@@ -27,3 +27,66 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
 }
+
+/* history section */
+.history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 3rem;
+  padding: 1rem;
+  background-color: rgb(134, 196, 173);
+  border: 3px solid black;
+  border-radius: 0.7rem;
+}
+
+.history > h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  margin: 0.7rem;
+}
+
+.detail i {
+  display: inline-block;
+  text-align: center;
+
+  border-radius: 2rem;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.history span:nth-child(2),
+i:nth-child(1) {
+  color: blue;
+}
+
+.history span:nth-child(4),
+i:nth-child(3) {
+  color: red;
+}
+
+.schedule i {
+  color: blue;
+}
+
+.done i {
+  color: red;
+}
+
+/* edit section */
+.edit {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
