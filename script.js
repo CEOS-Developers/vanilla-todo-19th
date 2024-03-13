@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const ul = document.querySelector('.list ul');
     const li = document.createElement('li');
-    li.append(description, currentText, trash);
+    li.append(currentText, description, trash);
     li.classList.add('schedule');
     ul.appendChild(li);
     makeHistoryElement(id);
