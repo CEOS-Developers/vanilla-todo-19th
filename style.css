@@ -14,7 +14,7 @@ h1 {
   margin: 0;
 }
 
-/* 애니메이션 */
+/* 할일 추가 애니메이션 */
 @keyframes slideDownFadeIn {
   from {
     opacity: 0;
@@ -25,9 +25,24 @@ h1 {
     transform: translateY(0);
   }
 }
-
 .animate-slide-down {
   animation: slideDownFadeIn 0.2s ease-out forwards;
+}
+/*  */
+
+/* 할일 삭제 애니메이션 */
+@keyframes fadeOutScaleDown {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+.animate-fade-out {
+  animation: fadeOutScaleDown 0.3s ease-out forwards;
 }
 /*  */
 

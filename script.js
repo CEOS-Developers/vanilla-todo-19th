@@ -40,8 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "삭제";
     deleteButton.onclick = function () {
-      todoList.removeChild(todoItem);
-      removeTodoFromStorage(todoText);
+      // 애니메이션 클래스 추가
+      todoItem.classList.add("animate-fade-out");
+
+      todoItem.addEventListener("animationend", () => {
+        todoList.removeChild(todoItem);
+        removeTodoFromStorage(todoText);
+      });
     };
 
     // 완료 체크 이미지 생성
