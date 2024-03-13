@@ -133,3 +133,31 @@ input:checked + label {
   background-color: rgb(33, 109, 176);
   color: white;
 }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0rem 3.2rem;
+
+  height: 25rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+
+  width: 100%;
+  padding: 2rem 3.2rem;
+  background-color: rgb(250, 242, 242);
+
+  border-radius: 0.2rem;
+  fonst-size: 2rem;
+}
