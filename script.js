@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         countSchedule -= 1;
         countDone += 1;
       }
-    } else if (id == 'todaySchedule') {
+    } else if (id == 'newSchedule') {
       countSchedule += 1;
     }
 
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
   saveBtn.addEventListener('click', function () {
     const inputDescription = document.getElementById('addDescription').value;
     if (inputDescription.trim() !== '') {
-      addTodoItem('todaySchedule', inputDescription);
+      addTodoItem('newSchedule', inputDescription);
       closeEditSchedule();
     } else {
       alert('Please enter your TODO');
