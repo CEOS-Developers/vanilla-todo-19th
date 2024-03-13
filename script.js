@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
       addTodoItem('todaySchedule', inputDescription);
       closeEditSchedule();
     } else {
-      alert('Please enter a description.');
+      alert('Please enter your TODO');
     }
   });
 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ul = document.querySelector('.list ul');
     const li = document.createElement('li');
     li.append(description, currentText);
-
+    li.classList.add('schedule');
     ul.appendChild(li);
     makeHistoryElement(id);
   }
@@ -112,6 +112,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // schedule, done 필터링 함수
   let scheduleChecked = true;
   let doneChecked = true;
+
+  const scheduleFilter = document.querySelector('label[for="schedule"]');
+  scheduleFilter.addEventListener('click', function () {
+    scheduleChecked = !scheduleChecked;
+    handleFilter();
+  });
+
+  const doneFilter = document.querySelector('label[for="done"]');
+  doneFilter.addEventListener('click', function () {
+    doneChecked = !doneChecked;
+    handleFilter();
+  });
 
   function handleFilter() {
     const scheduleItems = document.querySelectorAll('.schedule');
@@ -125,18 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
       item.style.display = doneChecked ? 'flex' : 'none';
     });
   }
-
-  const scheduleFilter = document.querySelector('label[for="schedule"]');
-  scheduleFilter.addEventListener('click', function () {
-    scheduleChecked = !scheduleChecked;
-    handleFilter();
-  });
-
-  const doneFilter = document.querySelector('label[for="done"]');
-  doneFilter.addEventListener('click', function () {
-    doneChecked = !doneChecked;
-    handleFilter();
-  });
 
   // 렌더링
   makeHistoryElement();
