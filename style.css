@@ -102,6 +102,16 @@ i:nth-child(3) {
   width: 100%;
 }
 
+.trash {
+  padding: 0.3rem 1rem;
+
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(33, 109, 176);
+
+  color: rgb(33, 109, 176);
+}
+
 /* form*/
 form {
   display: flex;
