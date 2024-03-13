@@ -1,12 +1,28 @@
+@import '../reset.css';
+
+@font-face {
+  font-family: 'SDSamliphopangche_Outline';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
   min-width: 375px;
 }
+
+body {
+  font-family: 'SDSamliphopangche_Outline';
+}
+
 header {
   padding: 1.5rem;
-  background-color: aliceblue;
+  background-color: rgb(134, 196, 173);
   text-align: center;
   border-bottom: 1px solid black;
 }
+
 h1 {
   font-size: 2rem;
   font-weight: bold;
