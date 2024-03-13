@@ -23,20 +23,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 로컬 스토리지에서 할 일 목록을 불러와서 페이지에 추가
     const toDos = JSON.parse(localStorage.getItem("toDos")) || [];
-    toDos.forEach((todo) => {
-      addTodoItem(todo, false); // 이미 저장된 항목을 불러오므로, 여기서는 save 파라미터를 false로 설정
+    toDos.forEach((todoObj) => {
+      addTodoItem(todoObj, false); // 이미 저장된 항목을 불러오므로, 여기서는 save 파라미터를 false로 설정
     });
   }
 
   // 할 일 추가
-  function addTodoItem(todoText, save = true) {
+  function addTodoItem(todoObj, save = true) {
     const todoItem = document.createElement("li");
     todoItem.classList.add("animate-slide-down");
 
     const todoTextContent = document.createElement("span");
-    todoTextContent.textContent = todoText;
+    todoTextContent.textContent = todoObj.text;
 
-    // 삭제 버튼
+    // 체크 상태
+    if (todoObj.checked) {
+      todoTextContent.style.textDecoration = "line-through";
+      todoItem.style.color = "#808080";
+    } else {
+      todoTextContent.style.textDecoration = "none";
+      todoItem.style.color = "white";
+    }
+
+    // 체크 상태 변경
+    const completeCheck = document.createElement("img");
+    completeCheck.src = todoObj.checked
+      ? "./icon/checkComplete.svg"
+      : "./icon/NotCheck.svg";
+    completeCheck.style.cursor = "pointer";
+
+    completeCheck.onclick = function () {
+      todoObj.checked = !todoObj.checked;
+      completeCheck.src = todoObj.checked
+        ? "./icon/checkComplete.svg"
+        : "./icon/NotCheck.svg";
+      if (todoObj.checked) {
+        todoTextContent.style.textDecoration = "line-through";
+        todoItem.style.color = "#808080";
+      } else {
+        todoTextContent.style.textDecoration = "none";
+        todoItem.style.color = "white";
+      }
+      saveTodoToStorage(todoObj); // 체크 상태 변경 후 저장
+    };
+
+    // 할 일 삭제
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "삭제";
     deleteButton.onclick = function () {
@@ -45,29 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       todoItem.addEventListener("animationend", () => {
         todoList.removeChild(todoItem);
-        removeTodoFromStorage(todoText);
+        removeTodoFromStorage(todoObj.text);
       });
-    };
-
-    // 완료 체크 이미지 생성
-    const completeCheck = document.createElement("img");
-    completeCheck.src = "./icon/NotCheck.svg";
-    completeCheck.style.cursor = "pointer";
-    completeCheck.setAttribute("data-checked", "false");
-
-    completeCheck.onclick = function () {
-      const isChecked = this.getAttribute("data-checked") === "true";
-      if (isChecked) {
-        this.src = "./icon/NotCheck.svg";
-        this.setAttribute("data-checked", "false");
-        todoTextContent.style.textDecoration = "none";
-        todoItem.style.color = "white";
-      } else {
-        this.src = "./icon/checkComplete.svg";
-        this.setAttribute("data-checked", "true");
-        todoTextContent.style.textDecoration = "line-through";
-        todoItem.style.color = "#808080";
-      }
     };
 
     todoList.insertBefore(todoItem, todoList.firstChild);
@@ -76,21 +86,27 @@ document.addEventListener("DOMContentLoaded", function () {
     todoItem.appendChild(deleteButton);
 
     if (save) {
-      saveTodoToStorage(todoText);
+      saveTodoToStorage(todoObj);
     }
   }
 
   // 로컬 스토리지에 할 일 저장
-  function saveTodoToStorage(todoText) {
+  function saveTodoToStorage(todoObj) {
     const toDos = JSON.parse(localStorage.getItem("toDos")) || [];
-    toDos.push(todoText);
+
+    const index = toDos.findIndex((todo) => todo.text === todoObj.text);
+    if (index !== -1) {
+      toDos[index] = todoObj; // 기존 항목 업데이트
+    } else {
+      toDos.push(todoObj); // 할 일 추가
+    }
     localStorage.setItem("toDos", JSON.stringify(toDos));
   }
 
   // 로컬 스토리지에서 할 일 삭제
   function removeTodoFromStorage(todoText) {
     const toDos = JSON.parse(localStorage.getItem("toDos")) || [];
-    const updatedToDos = toDos.filter((todo) => todo !== todoText);
+    const updatedToDos = toDos.filter((todo) => todo.text !== todoText);
     localStorage.setItem("toDos", JSON.stringify(updatedToDos));
   }
 
@@ -99,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
     const todoText = inputField.value.trim();
     if (todoText !== "") {
-      addTodoItem(todoText);
+      const todoObj = { text: todoText, checked: false };
+      addTodoItem(todoObj);
       inputField.value = "";
     }
   });
