@@ -10,12 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
         countDone -= 1;
       }
     } else if (id == 'done') {
+      countDone += 1;
       if (countSchedule > 0) {
         countSchedule -= 1;
-        countDone += 1;
       }
     } else if (id == 'newSchedule') {
       countSchedule += 1;
+    } else if (id == 'trashSchedule') {
+      countSchedule -= 1;
+    } else if (id == 'trashDone') {
+      countDone -= 1;
     }
 
     const historyH2 = document.createElement('h2');
@@ -101,9 +105,24 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
+    // 리스트 삭제하기
+    const trash = document.createElement('button');
+    trash.textContent = 'DELETE';
+    trash.className = 'trash';
+
+    trash.addEventListener('click', function () {
+      li.remove();
+
+      if (currentText.textContent === 'DONE') {
+        makeHistoryElement('trashDone');
+      } else {
+        makeHistoryElement('trashSchedule');
+      }
+    });
+
     const ul = document.querySelector('.list ul');
     const li = document.createElement('li');
-    li.append(description, currentText);
+    li.append(description, currentText, trash);
     li.classList.add('schedule');
     ul.appendChild(li);
     makeHistoryElement(id);
