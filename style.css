@@ -229,12 +229,14 @@ footer > button {
   padding: 1rem;
   width: 100%;
 }
+
 .editModal > form > label {
   border: 0;
 
   font-size: 1.2rem;
   color: black;
 }
+
 .editModal > form > input {
   display: block;
   align-items: center;
