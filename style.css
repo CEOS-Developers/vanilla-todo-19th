@@ -40,11 +40,11 @@ html, body {
 }
 #taskInfo {
     font-size: 1.5rem;
-
+margin-top: 0.7rem;
 }
 #title{
     font-size: 1.5rem;
-    margin-right: 25%;
+    margin-right: 20%;
 
 }
 
@@ -52,9 +52,8 @@ html, body {
 #date {
     font-size: 0.625rem;
     color: #6c757d;
-    margin-top: -1rem;
-    margin-right: 33%;
-
+    margin-top: -1.3rem;
+    margin-right: 35%;
 }
   
   .input-container {
@@ -65,12 +64,19 @@ html, body {
   }
   
   .todoInput {
+    -webkit-appearance: none; /*사파리에서 스타일 깨짐..*/
+    -moz-appearance: none;
+    appearance: none;
+
     font-size: 0.875rem;
+    font-weight: 500;
     background-color: #FFFFEF;
     font-family: SUITE;
-    margin-top: 0.625rem;
+    margin-top: 0.825rem;
     padding: 0.4375rem;
+    padding-bottom: 0.2rem;
     border: none;
+    outline: none; 
     border-bottom: 0.075rem solid gray; 
     width: 55%;
     margin-left: 0.625rem;
@@ -115,7 +121,7 @@ html, body {
 }
 
   #trashButton, #completeButton, #resetButton {
-    background-color: transparent;
+    background-color: transparㅁent;
     border: none;
     outline: none;
     cursor: pointer;
@@ -141,10 +147,11 @@ html, body {
     font-family: SUITE;
     width: 60%;
     margin: 0 auto;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 0.8125rem; 
     margin-bottom: 0.625rem; 
     padding: 0.4375rem; 
+    padding-left: 1rem;
     background-color: #fff;
     box-shadow: 0px 0.125rem 0.45rem rgba(0, 0, 0, 0.2); 
     text-align:left; 
@@ -203,4 +210,11 @@ html, body {
     background-color: #DBDBDB;
     border: 0.125rem solid #FFFFEF; 
     border-radius: 0.3rem;
+}
+#addButton, #trashButton, #completeButton, #resetButton {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-right: 0.6rem;
 }

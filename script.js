@@ -84,7 +84,6 @@ function getCurrentDateFormatted() {
           addTodoItem(text);
           todoInput.value = '';
           todoInput.classList.remove('inputFilled');
-          todoInput.focus();
         }
       });
   
@@ -95,7 +94,6 @@ function getCurrentDateFormatted() {
       selectedTodos = [];
       todoInput.value = '';
       todoInput.classList.remove('inputFilled');
-      todoInput.focus();
     });
   
     completeButton.addEventListener('click', () => {
@@ -110,7 +108,6 @@ function getCurrentDateFormatted() {
       selectedTodos = [];
       todoInput.value = '';
       todoInput.classList.remove('inputFilled');
-      todoInput.focus();
     });
     
     resetButton.addEventListener('click', function() {
@@ -128,7 +125,6 @@ function getCurrentDateFormatted() {
         updateTodoStatus();
         todoInput.value = '';
         todoInput.classList.remove('inputFilled');
-        todoInput.focus();
       });
       
       
@@ -138,7 +134,6 @@ function getCurrentDateFormatted() {
         addButton.click();
         todoInput.value = ''; 
       todoInput.classList.remove('inputFilled'); 
-      todoInput.focus(); 
         event.preventDefault();
         updateTodoStatus();
       }
@@ -169,11 +164,13 @@ function getCurrentDateFormatted() {
     //100% 완료 -> 할일 색상 변경
     if (isAllCompleted&& totalItems!==0) {
         taskInfo.style.color = '#fff'; 
+        taskInfo.style.fontWeight = '500';
         taskInfo.style.backgroundColor = '#FB84DA';
         taskInfo.style.borderRadius = '15%';
         taskInfo.style.padding = '0.1rem 0.3rem 0.1rem 0.3rem ';
     } else {
         taskInfo.style.color = 'gray'; 
+        taskInfo.style.fontWeight = '500';
         taskInfo.style.backgroundColor = '#ECECD8';
         taskInfo.style.borderRadius = '15%';
         taskInfo.style.padding = '0.1rem 0.3rem 0.1rem 0.3rem ';
