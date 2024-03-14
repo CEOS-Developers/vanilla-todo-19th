@@ -209,8 +209,6 @@ function addNewDoneListToShowingUI(done) {
 // 가져온 현재 날짜의 todoList를  UI로 보여줌
 todoList.forEach((todo) => {
   todoLength = todo.length;
-  console.log(todoLength);
-  // realTodo = todo.slice(0, todoLength - 13);
   addNewTodoListToShowingUI(todo);
 });
 
