@@ -15,6 +15,7 @@
 }
 * {
   margin: 0;
+  padding: 0;
 }
 body {
   line-height: 1.5;
@@ -60,11 +61,12 @@ h6 {
 body {
   min-height: 100vh;
   max-height: 100vh;
-  background-image: url('./assets/images/background-image.png');
+  background-image: url('./public/assets/images/background-image.png');
   background-position: center;
   display: flex;
   justify-content: center;
   padding: 10% 0;
+  overflow: hidden;
 }
 
 .focus-container {
@@ -155,4 +157,35 @@ body {
   justify-content: flex-start;
   align-items: center;
   overflow-y: scroll;
+}
+
+.showingTodo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  z-index: 10;
+}
+
+.showingTodoText {
+  flex-grow: 1;
+}
+
+.showingImageContainerDiv {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  column-gap: 15px;
+}
+
+.checkImage {
+  width: 20px;
+  height: 20px;
+}
+
+.trashCanImage {
+  width: 20px;
+  height: 20px;
 }

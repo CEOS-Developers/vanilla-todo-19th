@@ -35,7 +35,26 @@ let doneList =
 function addNewTodoListToShowingUI(newTodo) {
   const showingTodoDiv = document.createElement('div');
   showingTodoDiv.classList.add('showingTodo');
-  showingTodoDiv.innerText = newTodo;
+  const showingTodoText = document.createElement('span');
+  showingTodoText.classList.add('showingTodoText');
+  showingTodoText.innerText = newTodo;
+  showingTodoDiv.appendChild(showingTodoText);
+
+  const showingCheckImage = document.createElement('img');
+  showingCheckImage.classList.add('checkImage');
+  showingCheckImage.src = 'public/assets/images/check-solid.svg';
+  showingCheckImage.alt = 'This is check image';
+
+  const showingTrashCanImage = document.createElement('img');
+  showingTrashCanImage.classList.add('trashCanImage');
+  showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
+  showingTrashCanImage.alt = 'This is trash can image';
+
+  const showingImageContainerDiv = document.createElement('div');
+  showingImageContainerDiv.classList.add('showingImageContainerDiv');
+  showingImageContainerDiv.appendChild(showingCheckImage);
+  showingImageContainerDiv.appendChild(showingTrashCanImage);
+  showingTodoDiv.append(showingImageContainerDiv);
   todoListAreaDiv.appendChild(showingTodoDiv);
 }
 
