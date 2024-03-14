@@ -1,1 +1,206 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; 
+    background-color: #FDFFA8;
+  }
+  
+.container {
+    font-family: SUITE;
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;    
+    text-align: center;
+    background-color: #FFFFEF;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 2rem rgba(0, 0, 0, 0.3);
+    max-width: 25rem; 
+    max-height: 80vh;
+    overflow: auto;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent;
+}
+.list-container {
+    overflow-y: auto;
+}
+  
+.title-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 85%;
+    margin: auto; 
+}
+#taskInfo {
+    font-size: 1.5rem;
+
+}
+#title{
+    font-size: 1.5rem;
+    margin-right: 25%;
+
+}
+
+
+#date {
+    font-size: 0.625rem;
+    color: #6c757d;
+    margin-top: -1rem;
+    margin-right: 33%;
+
+}
+  
+  .input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem; 
+  }
+  
+  .todoInput {
+    font-size: 0.875rem;
+    background-color: #FFFFEF;
+    font-family: SUITE;
+    margin-top: 0.625rem;
+    padding: 0.4375rem;
+    border: none;
+    border-bottom: 0.075rem solid gray; 
+    width: 55%;
+    margin-left: 0.625rem;
+    ::placeholder {
+      color: #ced4da;
+    }
+    &:focus {
+      outline: none; 
+    }
+  }
+  .todoInput.inputFilled {
+    color: #007bff;
+    border-bottom: 0.075rem solid #007bff; 
+  }
+  
+  #addButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem; 
+    height: 1rem; 
+    font-family: SUITE;
+    margin-top: 1rem; 
+    background-color: transparent;
+    border: none;
+    border-radius: 0.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+  }
+  #addButton:active {
+    background-color: #aed3fb; 
+    transform: scale(0.95);
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end; 
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    width: 85%; 
+}
+
+  #trashButton, #completeButton, #resetButton {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.25rem;
+    margin-left: -0.5rem; 
+}
+
+#trashButton:active, 
+#completeButton:active, 
+#resetButton:active {
+    transform: scale(0.95);
+}
+  ul {
+    font-size: 0.875rem; 
+    list-style-type: decimal;
+    text-align: center; 
+    padding: 0; 
+    margin: 0; 
+  }
+  
+  ul li {
+    border-radius: 0.3rem;
+    font-family: SUITE;
+    width: 60%;
+    margin: 0 auto;
+    font-weight: 300;
+    font-size: 0.8125rem; 
+    margin-bottom: 0.625rem; 
+    padding: 0.4375rem; 
+    background-color: #fff;
+    box-shadow: 0px 0.125rem 0.45rem rgba(0, 0, 0, 0.2); 
+    text-align:left; 
+  }
+  
+  ul li:hover {
+    cursor: pointer;
+  }
+  
+  ul li.clicked {
+    background-color: #D1D1BE;
+  }
+  
+  ul li.completed {
+    background-color: #D7D0FF; 
+  }
+  
+  #completedList {
+    font-size: 0.875rem;
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  #completedList li.selected {
+    background-color: #B2ADD3; 
+  }
+
+  #completedListContainer {
+    display: flex;
+    align-items: flex-end; 
+    height: 12.5rem; 
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem; 
+    margin-bottom: 1.25rem; 
+}
+
+#progressBarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    gap: 0%; 
+    border-radius: 0.3rem;
+}
+
+.progressBox {
+    flex-grow: 1; 
+    max-height: 1.5rem;
+    height: 3vh;
+    background-color: #DBDBDB;
+    border: 0.125rem solid #FFFFEF; 
+    border-radius: 0.3rem;
+}

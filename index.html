@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla Todo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-wrapper">
+        <h2 id="title">투두리스트</h2>
+        <span id="taskInfo"></span>
+    </div>
+      <div id="date"></div>
+      <div class="input-container">
+        <input id="todoInput" type="text" class="todoInput" placeholder="오늘의 할일...">
+        <button id="addButton">🔥</button>
+      </div>
+      <div class="button-container">
+        <button id="trashButton">🗑️</button>
+        <button id="completeButton">✅</button>
+        <button id="resetButton">🔄</button> 
+      </div>
+    </div>
+    <div class="list-container">
+      <ul id="todoList"></ul>
+      <ul id="completedList"></ul>
+  </div>
+  <div class="footer">
+    <div id="progressBarContainer"></div>
+  </div>
 
-  <body>
-    <div class="container"></div>
-  </body>
+  </div>
+  
+
   <script src="script.js"></script>
+</body>
 </html>
