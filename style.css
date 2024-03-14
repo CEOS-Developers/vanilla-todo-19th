@@ -23,10 +23,16 @@ body {
   outline: none;
   border-radius: 10px;
   padding: 5px;
-  width: 365px;
+  width: 325px;
   height: 20px;
   line-height: 20px;
   cursor: pointer;
+
+  background-image: url('img/plus.svg');
+  background-position: 5px center; /*이미지 위치 조정*/
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  padding-left: 30px; /*텍스트와 이미지 겹침 방지를 위한 패딩 조정*/
 }
 
 .list-container {
@@ -54,6 +60,10 @@ body {
 
 .todo-text {
   font-size: 15px;
+}
+
+.text-decoration-line-through {
+  text-decoration: line-through;
 }
 
 .delete-btn {

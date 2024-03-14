@@ -2,15 +2,36 @@ const toDoForm = document.getElementById('todo-form');
 const toDoInput = document.querySelector('#todo-form input');
 const toDoList = document.getElementById('todo-list');
 
-// 할 일 목록 추가 함수
-function handleSubmit(event) {
-  event.preventDefault(); // submit 새로고침 방지
-  const newToDo = toDoInput.value; // input값 저장
-  toDoInput.value = ''; // 입력필드 초기화
-  showToDo(newToDo);
+let toDo = [];
+
+// 로컬스토리지 저장 함수
+function saveToDo() {
+  localStorage.setItem('toDo', JSON.stringify(toDo));
 }
 
-toDoForm.addEventListener('submit', handleSubmit);
+const savedToDo = localStorage.getItem('toDo');
+if (savedToDo !== null) {
+  const parsedToDo = JSON.parse(savedToDo);
+  toDo = parsedToDo;
+  parsedToDo.forEach(showToDo);
+}
+
+// 할 일 목록 추가 함수
+function SubmitToDo(event) {
+  event.preventDefault(); // submit 새로고침 방지
+  const newToDo = toDoInput.value.trim(); // input값 저장 및 앞뒤 공백 제거
+
+  // 입력된 값이 빈 문자열이 아닐 경우에만 할 일 목록에 추가
+  if (newToDo !== '') {
+    toDo.push(newToDo);
+    showToDo(newToDo);
+    saveToDo();
+  }
+
+  toDoInput.value = ''; // 입력필드 초기화
+}
+
+toDoForm.addEventListener('submit', SubmitToDo);
 
 // 입력 받은 할 일 목록 출력 함수
 function showToDo(newToDo) {
@@ -26,23 +47,32 @@ function showToDo(newToDo) {
 
   checkbox.type = 'checkbox';
   span.innerText = newToDo;
-  deleteButton.addEventListener('click', deleteToDo);
+  deleteButton.addEventListener('click', () => {
+    const itemIndex = toDo.indexOf(newToDo);
+    deleteToDo(itemIndex);
+    listItem.remove(); // listItem을 DOM에서 직접 제거
+  });
 
   // span(텍스트) 클릭 시 체크박스 체크 상태 변경
   span.addEventListener('click', () => {
     checkbox.checked = !checkbox.checked;
+    span.classList.toggle('text-decoration-line-through', checkbox.checked); // CSS 클래스를 통해 스타일 변경
   });
 
-  listItem.appendChild(checkbox);
-  listItem.appendChild(span);
-  listItem.appendChild(deleteButton);
+  // 체크박스 상태 변경 시 이벤트 리스너
+  checkbox.addEventListener('change', () => {
+    span.classList.toggle('text-decoration-line-through', checkbox.checked); // CSS 클래스를 통해 스타일 변경
+  });
+
+  listItem.append(checkbox, span, deleteButton);
   toDoList.appendChild(listItem); // listItem을 toDoList에 추가
 }
 
-// 할 일 삭제 함수
-function deleteToDo(event) {
-  const selectedItem = event.target.parentElement; // 삭제 버튼의 부모 항목을 li에 저장
-  selectedItem.remove();
+function deleteToDo(index) {
+  // 특정 인덱스의 할 일을 배열에서 제거
+  toDo.splice(index, 1);
+  // 로컬 스토리지 업데이트
+  localStorage.setItem('toDo', JSON.stringify(toDo));
 }
 
 // 오늘의 날짜
