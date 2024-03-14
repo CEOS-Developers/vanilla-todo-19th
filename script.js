@@ -22,29 +22,32 @@ const setLocalStorage = () => {
   localStorage.setItem("done", JSON.stringify(doneArr));
 };
 
+// Local Storage 불러오기
 const loadLocalStorage = () => {
   const todo = JSON.parse(localStorage.getItem("todo"));
   const done = JSON.parse(localStorage.getItem("done"));
 
-  for (let i = 0; i < todo.length; i++) {
-    todoUl.appendChild(createListElement(todo[i]));
-    todoArr.push(todo[i]);
-  }
+  // todo 불러오기
+  todo.forEach((element) => {
+    todoUl.appendChild(createListElement(element));
+    todoArr.push(element);
+  });
 
-  for (let i = 0; i < done.length; i++) {
-    doneUl.appendChild(createListElement(done[i]));
-    doneArr.push(done[i]);
-  }
+  // done 불러오기
+  done.forEach((element) => {
+    doneUl.appendChild(createListElement(element));
+    doneArr.push(element);
+  });
+  // 불러온 done에 class 세팅
   const doneli = document.querySelectorAll(".todo-box__done li");
-  for (let i = 0; i < doneli.length; i++) {
-    doneli[i].classList.add("done");
-  }
+  doneli.forEach((element) => {
+    element.classList.add("done");
+  });
 };
 
 // Todo <-> Done 이동 함수
 const moveItem = (todoListNode) => {
   const isDone = todoListNode.classList.contains("done");
-
   // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
   if (isDone) {
     doneUl.appendChild(todoListNode);
