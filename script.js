@@ -10,34 +10,49 @@ const getTodayDate = () => {
 };
 
 // Todo <-> Done 이동 함수
-const moveItem = (e) => {
-  const isDone = e.target.classList.contains("done");
+const moveItem = (todoListNode) => {
+  const isDone = todoListNode.classList.contains("done");
   const todoUl = document.querySelector(".todo-box__todo ul");
   const doneUl = document.querySelector(".todo-box__done ul");
   if (isDone) {
-    doneUl.appendChild(e.target);
+    doneUl.appendChild(todoListNode);
     // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
   } else {
-    todoUl.appendChild(e.target);
+    todoUl.appendChild(todoListNode);
   }
 };
 
 // Todo 또는 Done class 토글 함수
 const toggleTodo = (e) => {
-  e.target.classList.toggle("done");
-  moveItem(e);
+  const todoListNode = e.target.parentElement;
+  todoListNode.classList.toggle("done");
+  moveItem(todoListNode);
 };
 
-// 할일 추가 함수
+const deleteItem = (e) => {
+  const todoListNode = e.target.parentElement.parentElement;
+  todoListNode.remove();
+};
+
+// 할일 추가 함수 ❗내부 분리할 필요 있을까?
 const addTodo = () => {
   // input에 입력한 값 가져오기
   const todoInput = document.querySelector(".input-box input");
   const todoInputText = todoInput.value;
 
-  // li element 생성 후 input 값 세팅
+  // 노드 생성 & 계층 세팅
   const todoListNode = document.createElement("li");
-  todoListNode.textContent = todoInputText;
-  todoListNode.addEventListener("click", toggleTodo);
+  const todoTextNode = document.createElement("span");
+  const todoDeleteBtnNode = document.createElement("button");
+  todoDeleteBtnNode.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+  todoListNode.append(todoTextNode, todoDeleteBtnNode);
+
+  // Todo 텍스트 설정
+  todoTextNode.textContent = todoInputText;
+  todoTextNode.addEventListener("click", toggleTodo);
+
+  // Delete 버튼 설정
+  todoDeleteBtnNode.addEventListener("click", deleteItem);
 
   // 추가
   const todoUl = document.querySelector(".todo-box__todo ul");

@@ -93,5 +93,27 @@ header .date /*가독성을 위해 header를 붙여줌*/ {
 }
 
 .todo-box li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.todo-box li:hover {
+  color: #6a9fdc;
+}
+
+.todo-box li span {
   cursor: pointer;
+  transition: color 0.1s ease-out;
+}
+
+.todo-box li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.todo-box li:hover button {
+  opacity: 1;
 }
