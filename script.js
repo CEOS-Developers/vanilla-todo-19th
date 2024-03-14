@@ -35,8 +35,10 @@ const loadLocalStorage = () => {
     doneUl.appendChild(createListElement(done[i]));
     doneArr.push(done[i]);
   }
-  const doneli = document.querySelector(".todo-box__done li");
-  doneli.classList.add("done");
+  const doneli = document.querySelectorAll(".todo-box__done li");
+  for (let i = 0; i < doneli.length; i++) {
+    doneli[i].classList.add("done");
+  }
 };
 
 // Todo <-> Done 이동 함수
@@ -126,7 +128,7 @@ const createListElement = (txt) => {
 const addTodo = () => {
   // input에 입력한 값 가져오기
   const todoInput = document.querySelector(".input-box input");
-  const todoInputText = todoInput.value;
+  const todoInputText = todoInput.value.trim();
 
   // 예외처리: 할일 중복 X
   if ([...todoArr, ...doneArr].includes(todoInputText)) {
