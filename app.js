@@ -109,7 +109,7 @@ function removeFromTodo(itemName) {
 function addNewTodoListToShowingUI(newTodo) {
   const showingTodoDiv = document.createElement('div');
   showingTodoDiv.classList.add('showingTodo');
-  const showingTodoText = document.createElement('span');
+  const showingTodoText = document.createElement('p');
   showingTodoText.classList.add('showingTodoText');
   showingTodoText.innerText = newTodo.slice(0, newTodo.length - 13);
   showingTodoDiv.appendChild(showingTodoText);
@@ -177,7 +177,7 @@ function removeFromDone(itemName) {
 function addNewDoneListToShowingUI(done) {
   const showingDoneDiv = document.createElement('div');
   showingDoneDiv.classList.add('showingDone');
-  const showingDoneText = document.createElement('span');
+  const showingDoneText = document.createElement('p');
   showingDoneText.classList.add('showingDoneText');
   showingDoneText.innerText = done.slice(0, done.length - 13);
   showingDoneDiv.appendChild(showingDoneText);
@@ -267,11 +267,13 @@ inputBox.addEventListener('keydown', (event) => {
 });
 
 submitButton.addEventListener('click', () => {
+  const nowTimeString = makeUniqueTodoIDByDate();
+  const nowInputBoxValue = inputBox.value.trim();
   if (inputBox.value.trim() !== '') {
-    addTodoItemToLocalStrage(inputBox.value.trim());
+    addTodoItemToLocalStrage(nowInputBoxValue, nowTimeString);
   }
 
-  handleSubmitInputBoxByEnterKeyOrSubmitButton();
+  handleSubmitInputBoxByEnterKeyOrSubmitButton(nowInputBoxValue, nowTimeString);
 });
 
 todayDateInput.addEventListener('change', () => {
