@@ -1,3 +1,6 @@
+const todoUl = document.querySelector(".todo-box__todo ul");
+const doneUl = document.querySelector(".todo-box__done ul");
+
 // Todo, Done 리스트를 저장하는 전역 변수
 let todoArr = [];
 let doneArr = [];
@@ -22,14 +25,23 @@ const setLocalStorage = () => {
 const loadLocalStorage = () => {
   const todo = JSON.parse(localStorage.getItem("todo"));
   const done = JSON.parse(localStorage.getItem("done"));
-  console.log(todo + "\n" + done);
+
+  for (let i = 0; i < todo.length; i++) {
+    todoUl.appendChild(createListElement(todo[i]));
+    todoArr.push(todo[i]);
+  }
+
+  for (let i = 0; i < done.length; i++) {
+    doneUl.appendChild(createListElement(done[i]));
+    doneArr.push(done[i]);
+  }
+  const doneli = document.querySelector(".todo-box__done li");
+  doneli.classList.add("done");
 };
 
 // Todo <-> Done 이동 함수
 const moveItem = (todoListNode) => {
   const isDone = todoListNode.classList.contains("done");
-  const todoUl = document.querySelector(".todo-box__todo ul");
-  const doneUl = document.querySelector(".todo-box__done ul");
 
   // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
   if (isDone) {
@@ -41,15 +53,10 @@ const moveItem = (todoListNode) => {
     todoArr.push(todoListNode.textContent);
     doneArr = doneArr.filter((element) => element !== todoListNode.textContent);
   }
-
-  console.log("todoArr:" + todoArr + "\n" + "doneArr:" + doneArr);
 };
 
 // Todo Progress Bar 업데이트 함수
 const updateItemCount = () => {
-  const todoUl = document.querySelector(".todo-box__todo ul");
-  const doneUl = document.querySelector(".todo-box__done ul");
-
   const todoCount = todoUl.childElementCount;
   const doneCount = doneUl.childElementCount;
   const totalCount = todoCount + doneCount;
@@ -81,9 +88,10 @@ const toggleTodo = (e) => {
 // 아이템 삭제 함수
 const deleteItem = (e) => {
   const todoListNode = e.target.parentElement.parentElement;
-  const isDone = todoListNode.classList.contains("done");
   // 삭제
   todoListNode.remove();
+
+  const isDone = todoListNode.classList.contains("done");
   if (isDone) {
     doneArr = doneArr.filter((element) => element !== todoListNode.textContent);
   } else {
@@ -95,6 +103,23 @@ const deleteItem = (e) => {
   updateItemCount();
 
   setLocalStorage();
+};
+
+// Todo/Done 노드 생성 & 계층 세팅 함수
+const createListElement = (txt) => {
+  const todoListNode = document.createElement("li");
+  const todoTextNode = document.createElement("span");
+  const todoDeleteBtnNode = document.createElement("button");
+  todoDeleteBtnNode.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
+  todoListNode.append(todoTextNode, todoDeleteBtnNode);
+
+  // Todo 텍스트 설정
+  todoTextNode.textContent = txt;
+  todoTextNode.addEventListener("click", toggleTodo);
+  // Delete 버튼 설정
+  todoDeleteBtnNode.addEventListener("click", deleteItem);
+
+  return todoListNode;
 };
 
 // 할일 추가 함수 ❗내부 분리할 필요 있을까?
@@ -110,25 +135,12 @@ const addTodo = () => {
     todoInput.value = "";
     return;
   }
+
   // 예외처리: 할일 공백 X
   if (!todoInputText) return;
 
-  // 노드 생성 & 계층 세팅
-  const todoListNode = document.createElement("li");
-  const todoTextNode = document.createElement("span");
-  const todoDeleteBtnNode = document.createElement("button");
-  todoDeleteBtnNode.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>';
-  todoListNode.append(todoTextNode, todoDeleteBtnNode);
-
-  // Todo 텍스트 설정
-  todoTextNode.textContent = todoInputText;
-  todoTextNode.addEventListener("click", toggleTodo);
-  // Delete 버튼 설정
-  todoDeleteBtnNode.addEventListener("click", deleteItem);
-
   // 추가
-  const todoUl = document.querySelector(".todo-box__todo ul");
-  todoUl.appendChild(todoListNode);
+  todoUl.appendChild(createListElement(todoInputText));
   todoArr.push(todoInputText);
 
   // Progess bar 업데이트
