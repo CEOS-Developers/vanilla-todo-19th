@@ -31,6 +31,24 @@ let doneList =
     ? []
     : JSON.parse(localStorage.getItem(`${todayDateInput.value}done`));
 
+function moveTodoToDone(itemName) {
+  const todayDate = todayDateInput.value;
+  let prevTodoList = JSON.parse(localStorage.getItem(`${todayDate}todo`));
+  const index = prevTodoList.indexOf(itemName);
+  if (index !== -1) {
+    prevTodoList.splice(index, 1);
+  }
+  localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList)); // 기존의 로컬스토리지 todo에서 지우는 로직
+
+  let prevDoneList =
+    localStorage.getItem(`${todayDate}done`) === null
+      ? []
+      : JSON.parse(localStorage.getItem(`${todayDate}done`));
+  prevDoneList.push(itemName);
+  localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // done 로컬 스토리지에 반영하는 로직
+  location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+}
+
 // 새로운 요소를 할일 UI 쪽에 추가하는 함수. 새로운 dom 요소를 생성하여 UI에 반영함
 function addNewTodoListToShowingUI(newTodo) {
   const showingTodoDiv = document.createElement('div');
@@ -44,6 +62,9 @@ function addNewTodoListToShowingUI(newTodo) {
   showingCheckImage.classList.add('checkImage');
   showingCheckImage.src = 'public/assets/images/check-solid.svg';
   showingCheckImage.alt = 'This is check image';
+  showingCheckImage.addEventListener('click', () => {
+    moveTodoToDone(newTodo);
+  });
 
   const showingTrashCanImage = document.createElement('img');
   showingTrashCanImage.classList.add('trashCanImage');
@@ -58,6 +79,53 @@ function addNewTodoListToShowingUI(newTodo) {
   todoListAreaDiv.appendChild(showingTodoDiv);
 }
 
+function moveDoneToTodo(itemName) {
+  const todayDate = todayDateInput.value;
+  let prevDoneList = JSON.parse(localStorage.getItem(`${todayDate}done`));
+  const index = prevDoneList.indexOf(itemName);
+  if (index !== -1) {
+    prevDoneList.splice(index, 1);
+  }
+  localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // 기존의 로컬스토리지 todo에서 지우는 로직
+
+  let prevTodoList =
+    localStorage.getItem(`${todayDate}todo`) === null
+      ? []
+      : JSON.parse(localStorage.getItem(`${todayDate}todo`));
+  prevTodoList.push(itemName);
+  localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList)); // done 로컬 스토리지에 반영하는 로직
+  location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+}
+
+function addNewDoneListToShowingUI(done) {
+  const showingDoneDiv = document.createElement('div');
+  showingDoneDiv.classList.add('showingDone');
+  const showingDoneText = document.createElement('span');
+  showingDoneText.classList.add('showingDoneText');
+  showingDoneText.innerText = done;
+  showingDoneDiv.appendChild(showingDoneText);
+
+  const showingBackImage = document.createElement('img');
+  showingBackImage.classList.add('backImage');
+  showingBackImage.src = 'public/assets/images/arrow-left-long-solid.svg';
+  showingBackImage.alt = 'This is back image';
+  showingBackImage.addEventListener('click', () => {
+    moveDoneToTodo(done);
+  });
+
+  const showingTrashCanImage = document.createElement('img');
+  showingTrashCanImage.classList.add('trashCanImage');
+  showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
+  showingTrashCanImage.alt = 'This is trash can image';
+
+  const showingImageContainerDiv = document.createElement('div');
+  showingImageContainerDiv.classList.add('showingImageContainerDiv');
+  showingImageContainerDiv.appendChild(showingBackImage);
+  showingImageContainerDiv.appendChild(showingTrashCanImage);
+  showingDoneDiv.append(showingImageContainerDiv);
+  doneListAreaDiv.appendChild(showingDoneDiv);
+}
+
 // 가져온 현재 날짜의 todoList를  UI로 보여줌
 todoList.forEach((todo) => {
   addNewTodoListToShowingUI(todo);
@@ -65,10 +133,7 @@ todoList.forEach((todo) => {
 
 // 가져온 현재 날짜의 doneList를 UI로 보여줌
 doneList.forEach((done) => {
-  const showingDoneDiv = document.createElement('div');
-  showingDoneDiv.classList.add('showingDone');
-  showingDoneDiv.innerText = done;
-  todoListAreaDiv.appendChild(showingDoneDiv);
+  addNewDoneListToShowingUI(done);
 });
 
 // 사용자가 input box에 내용을 입력하고 엔터 키를 누르거나 제출 버튼을 눌러 제출할 때 트리거 되는 함수. 내부에서 유효성 검사를 수행한다.

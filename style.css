@@ -159,7 +159,8 @@ body {
   overflow-y: scroll;
 }
 
-.showingTodo {
+.showingTodo,
+.showingDone {
   width: 100%;
   height: auto;
   display: flex;
@@ -186,6 +187,11 @@ body {
 }
 
 .trashCanImage {
+  width: 20px;
+  height: 20px;
+}
+
+.backImage {
   width: 20px;
   height: 20px;
 }
