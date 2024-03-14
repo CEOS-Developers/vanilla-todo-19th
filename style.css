@@ -36,7 +36,7 @@ header span {
 /*Todo Input*/
 .input-box {
   background-color: #c0e0fe;
-  border-radius: 7px;
+  border-radius: 10px;
   height: 40px;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -57,4 +57,19 @@ header span {
 .input-box button {
   background-color: transparent;
   border: none;
+}
+
+.todo-box {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: 10px;
+  background-color: #fcf4db;
+  border-radius: 10px;
+  min-height: 400px;
+  padding: 10px;
+}
+
+.todo-box__line {
+  border: 1px dashed rgba(125, 126, 126, 0.5);
+  margin: 5px 20px;
 }
