@@ -28,6 +28,11 @@ function showToDo(newToDo) {
   span.innerText = newToDo;
   deleteButton.addEventListener('click', deleteToDo);
 
+  // span(텍스트) 클릭 시 체크박스 체크 상태 변경
+  span.addEventListener('click', () => {
+    checkbox.checked = !checkbox.checked;
+  });
+
   listItem.appendChild(checkbox);
   listItem.appendChild(span);
   listItem.appendChild(deleteButton);
