@@ -175,6 +175,8 @@ function getCurrentDateFormatted() {
     } else {
         taskInfo.style.color = 'gray'; 
         taskInfo.style.backgroundColor = '#ECECD8';
+        taskInfo.style.borderRadius = '15%';
+        taskInfo.style.padding = '0.1rem 0.3rem 0.1rem 0.3rem ';
 
     }
 
