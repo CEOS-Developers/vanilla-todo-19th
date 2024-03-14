@@ -19,6 +19,37 @@ function getNowDateFormatString() {
   return todayDateInput.value;
 }
 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+// 모든 todo리스트를 지우고 로컬 스토리지에 업데이트된 것으로 다시 마운트하는 함수
+function getDownAllTodoItemsFromDomAndRemount() {
+  removeAllChildNodes(todoListAreaDiv);
+  let newTodoList =
+    localStorage.getItem(`${todayDateInput.value}todo`) === null
+      ? []
+      : JSON.parse(localStorage.getItem(`${todayDateInput.value}todo`));
+
+  newTodoList.forEach((newTodo) => {
+    addNewTodoListToShowingUI(newTodo);
+  });
+}
+
+// 모든 done 리스트를 지우고 로컬 스토리지에 업데이트된 것으로 다시 마운트하는 함수
+function getDownAllDoneItemsFromDomAndRemount() {
+  removeAllChildNodes(doneListAreaDiv);
+  let newDoneList =
+    localStorage.getItem(`${todayDateInput.value}done`) === null
+      ? []
+      : JSON.parse(localStorage.getItem(`${todayDateInput.value}done`));
+  newDoneList.forEach((newDone) => {
+    addNewDoneListToShowingUI(newDone);
+  });
+}
+
 // 웹 페이지가 처음 렌더링 되는 시점에 로컬 스토리지로 부터 불러옴. 아직 존재하지 않는다면 빈 배열을 할당(삼항 연산자 이용)
 const firstDomMountedDateFormatString = getNowDateFormatString();
 
@@ -31,6 +62,7 @@ let doneList =
     ? []
     : JSON.parse(localStorage.getItem(`${todayDateInput.value}done`));
 
+// todo를 done으로 로컬 스토리지 갱신을 하고 UI에 반영하는 함수
 function moveTodoToDone(itemName) {
   const todayDate = todayDateInput.value;
   let prevTodoList = JSON.parse(localStorage.getItem(`${todayDate}todo`));
@@ -46,12 +78,13 @@ function moveTodoToDone(itemName) {
       : JSON.parse(localStorage.getItem(`${todayDate}done`));
   prevDoneList.push(itemName);
   localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // done 로컬 스토리지에 반영하는 로직
-  location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+  // location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+  getDownAllTodoItemsFromDomAndRemount();
+  getDownAllDoneItemsFromDomAndRemount();
 }
 
+// todo를 로컬 스토리지에서 지워버리고 UI에 반영하는 함수
 function removeFromTodo(itemName) {
-  console.log('hi remove');
-  console.log(itemName);
   const todayDate = todayDateInput.value;
   let prevTodoList = JSON.parse(localStorage.getItem(`${todayDate}todo`));
   const index = prevTodoList.indexOf(itemName);
@@ -59,7 +92,8 @@ function removeFromTodo(itemName) {
     prevTodoList.splice(index, 1);
   }
   localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList));
-  location.reload();
+  getDownAllTodoItemsFromDomAndRemount();
+  // done도 새로 반영?
 }
 
 // 새로운 요소를 할일 UI 쪽에 추가하는 함수. 새로운 dom 요소를 생성하여 UI에 반영함
@@ -92,9 +126,11 @@ function addNewTodoListToShowingUI(newTodo) {
   showingImageContainerDiv.appendChild(showingCheckImage);
   showingImageContainerDiv.appendChild(showingTrashCanImage);
   showingTodoDiv.append(showingImageContainerDiv);
+
   todoListAreaDiv.appendChild(showingTodoDiv);
 }
 
+// done을 todo로 옮기는 로컬 스토리지적인 논리를 적용하고 UI에 반영
 function moveDoneToTodo(itemName) {
   const todayDate = todayDateInput.value;
   let prevDoneList = JSON.parse(localStorage.getItem(`${todayDate}done`));
@@ -110,9 +146,12 @@ function moveDoneToTodo(itemName) {
       : JSON.parse(localStorage.getItem(`${todayDate}todo`));
   prevTodoList.push(itemName);
   localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList)); // done 로컬 스토리지에 반영하는 로직
-  location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+  // location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+  getDownAllTodoItemsFromDomAndRemount();
+  getDownAllDoneItemsFromDomAndRemount();
 }
 
+// done을 로컬스토리지로부터 없애고 UI에 반영
 function removeFromDone(itemName) {
   const todayDate = todayDateInput.value;
   let prevDoneList = JSON.parse(localStorage.getItem(`${todayDate}done`));
@@ -121,9 +160,10 @@ function removeFromDone(itemName) {
     prevDoneList.splice(index, 1);
   }
   localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // 기존의 로컬스토리지 todo에서 지우는 로직
-  location.reload();
+  getDownAllDoneItemsFromDomAndRemount();
 }
 
+//새로운 done 항목을 UI에 추가해주는 로직
 function addNewDoneListToShowingUI(done) {
   const showingDoneDiv = document.createElement('div');
   showingDoneDiv.classList.add('showingDone');
@@ -179,14 +219,6 @@ function handleSubmitInputBoxByEnterKeyOrSubmitButton() {
   inputBox.value = '';
 }
 
-// input box에 포커싱이 되어 있고 엔터키가 눌리면 UI 추가가 되어야 함
-inputBox.addEventListener('keydown', (event) => {
-  if (event.keyCode === 13) {
-    addTodoItemToLocalStrage(inputBox.value.trim());
-    handleSubmitInputBoxByEnterKeyOrSubmitButton();
-  }
-});
-
 function addTodoItemToLocalStrage(todoItem) {
   const nowDateFormatString = getNowDateFormatString();
   // 뒤져서 없으면 만들어주고, 있으면 추가해서 새로 넣어줘야 함
@@ -200,3 +232,16 @@ function addTodoItemToLocalStrage(todoItem) {
   newLocalStorageData.push(todoItem);
   localStorage.setItem(localStorageKey, JSON.stringify(newLocalStorageData));
 }
+
+// input box에 포커싱이 되어 있고 엔터키가 눌리면 UI 추가가 되어야 함
+inputBox.addEventListener('keydown', (event) => {
+  if (event.keyCode === 13) {
+    addTodoItemToLocalStrage(inputBox.value.trim());
+    handleSubmitInputBoxByEnterKeyOrSubmitButton();
+  }
+});
+
+todayDateInput.addEventListener('change', () => {
+  getDownAllTodoItemsFromDomAndRemount();
+  getDownAllDoneItemsFromDomAndRemount();
+});
