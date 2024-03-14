@@ -73,6 +73,14 @@ const updateItemCount = () => {
   let doneRatio = 0;
   if (totalCount !== 0) doneRatio = (doneCount / totalCount) * 100;
   progressBarDone.style.width = `${doneRatio}%`;
+
+  // 텍스트 세팅
+  const progressText = document.querySelector(".progress-box__text");
+  if (doneCount === totalCount) {
+    progressText.textContent = "대단해요 !";
+  } else {
+    progressText.textContent = "달려봐요 !";
+  }
 };
 
 // Todo 또는 Done class 토글 함수
