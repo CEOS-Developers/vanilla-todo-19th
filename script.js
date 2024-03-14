@@ -23,15 +23,25 @@ const moveItem = (todoListNode) => {
   }
 };
 
-// Todo Progress Bar 업데이트
+// Todo Progress Bar 업데이트 함수
 const updateItemCount = () => {
-  console.log("update");
   const todoUl = document.querySelector(".todo-box__todo ul");
   const doneUl = document.querySelector(".todo-box__done ul");
 
   const todoCount = todoUl.childElementCount;
   const doneCount = doneUl.childElementCount;
-  console.log(`${doneCount} / ${doneCount + todoCount}`);
+  const totalCount = todoCount + doneCount;
+
+  const progressBarCount = document.querySelector(".progress-box__count");
+  progressBarCount.textContent = `${doneCount} / ${totalCount}`;
+
+  const progressBarDone = document.querySelector(".progress-box__bar-done");
+  if (totalCount > 0) {
+    const progessBarPercent = (doneCount / totalCount) * 100;
+    progressBarDone.style.width = `${progessBarPercent}%`;
+  } else if (totalCount === 0) {
+    progressBarDone.style.width = "0%";
+  }
 };
 
 // Todo 또는 Done class 토글 함수
@@ -44,6 +54,7 @@ const toggleTodo = (e) => {
   updateItemCount();
 };
 
+// 아이템 삭제 함수
 const deleteItem = (e) => {
   const todoListNode = e.target.parentElement.parentElement;
   // 삭제
@@ -68,7 +79,6 @@ const addTodo = () => {
   // Todo 텍스트 설정
   todoTextNode.textContent = todoInputText;
   todoTextNode.addEventListener("click", toggleTodo);
-
   // Delete 버튼 설정
   todoDeleteBtnNode.addEventListener("click", deleteItem);
 
@@ -78,7 +88,6 @@ const addTodo = () => {
 
   // Progess bar 업데이트
   updateItemCount();
-
   // input value 초기화
   todoInput.value = "";
 };
@@ -96,6 +105,9 @@ const init = () => {
     if (e.keyCode === 13) addTodo();
   });
   plusBtn.addEventListener("click", addTodo);
+
+  // Progress Bar 세팅
+  updateItemCount();
 };
 
 init();

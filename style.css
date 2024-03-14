@@ -87,6 +87,7 @@ header .date /*가독성을 위해 header를 붙여줌*/ {
   border-radius: 10px;
   height: inherit;
   position: absolute;
+  transition: width 0.4s ease-in-out;
 }
 
 /*Todo Box*/
