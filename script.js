@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // 모달 띄우기, 닫기
-  const editModalBackground = document.querySelector('.editModalBackground');
+  const editModalBackground = document.querySelector('.edit-modal-bg');
   const editBtn = document.querySelector('footer button');
 
   editBtn.addEventListener('click', function () {
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // 모달 저장, 닫기 버튼 이벤트함수
-  const saveBtn = document.querySelector('.saveBtn');
-  const closeBtn = document.querySelector('.closeBtn');
+  const saveBtn = document.querySelector('.save-btn');
+  const closeBtn = document.querySelector('.close-btn');
 
   saveBtn.addEventListener('click', function () {
     const inputDescription = document.getElementById('addDescription').value;
