@@ -1,1 +1,34 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@font-face {
+  font-family: "UhBeepuding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "UhBeepuding";
+}
+
+body {
+  background-color: #ffec9d;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #7d7e7e;
+}
+
+header span {
+  font-size: 20px;
+}
