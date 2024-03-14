@@ -1,3 +1,7 @@
+// Todo, Done 리스트를 저장하는 전역 변수
+let todoArr = [];
+let doneArr = [];
+
 // 오늘 날짜 반환 함수
 const getTodayDate = () => {
   const today = new Date();
@@ -9,6 +13,18 @@ const getTodayDate = () => {
   return `${year}.${month}.${day}`;
 };
 
+// Local Storage에 저장
+const setLocalStorage = () => {
+  localStorage.setItem("todo", JSON.stringify(todoArr));
+  localStorage.setItem("done", JSON.stringify(doneArr));
+};
+
+const loadLocalStorage = () => {
+  const todo = JSON.parse(localStorage.getItem("todo"));
+  const done = JSON.parse(localStorage.getItem("done"));
+  console.log(todo + "\n" + done);
+};
+
 // Todo <-> Done 이동 함수
 const moveItem = (todoListNode) => {
   const isDone = todoListNode.classList.contains("done");
@@ -18,9 +34,15 @@ const moveItem = (todoListNode) => {
   // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
   if (isDone) {
     doneUl.appendChild(todoListNode);
+    doneArr.push(todoListNode.textContent);
+    todoArr = todoArr.filter((element) => element !== todoListNode.textContent);
   } else {
     todoUl.appendChild(todoListNode);
+    todoArr.push(todoListNode.textContent);
+    doneArr = doneArr.filter((element) => element !== todoListNode.textContent);
   }
+
+  console.log("todoArr:" + todoArr + "\n" + "doneArr:" + doneArr);
 };
 
 // Todo Progress Bar 업데이트 함수
@@ -52,15 +74,27 @@ const toggleTodo = (e) => {
   moveItem(todoListNode);
   // Progess bar 업데이트
   updateItemCount();
+
+  setLocalStorage();
 };
 
 // 아이템 삭제 함수
 const deleteItem = (e) => {
   const todoListNode = e.target.parentElement.parentElement;
+  const isDone = todoListNode.classList.contains("done");
   // 삭제
   todoListNode.remove();
+  if (isDone) {
+    doneArr = doneArr.filter((element) => element !== todoListNode.textContent);
+  } else {
+    todoArr = todoArr.filter((element) => element !== todoListNode.textContent);
+  }
+  console.log("todoArr:" + todoArr + "\n" + "doneArr:" + doneArr);
+
   // Progess bar 업데이트
   updateItemCount();
+
+  setLocalStorage();
 };
 
 // 할일 추가 함수 ❗내부 분리할 필요 있을까?
@@ -68,6 +102,16 @@ const addTodo = () => {
   // input에 입력한 값 가져오기
   const todoInput = document.querySelector(".input-box input");
   const todoInputText = todoInput.value;
+
+  // 예외처리: 할일 중복 X
+  if ([...todoArr, ...doneArr].includes(todoInputText)) {
+    // 중복 할일 X
+    alert("이미 존재하는 할 일 입니다!");
+    todoInput.value = "";
+    return;
+  }
+  // 예외처리: 할일 공백 X
+  if (!todoInputText) return;
 
   // 노드 생성 & 계층 세팅
   const todoListNode = document.createElement("li");
@@ -85,9 +129,13 @@ const addTodo = () => {
   // 추가
   const todoUl = document.querySelector(".todo-box__todo ul");
   todoUl.appendChild(todoListNode);
+  todoArr.push(todoInputText);
 
   // Progess bar 업데이트
   updateItemCount();
+
+  setLocalStorage();
+
   // input value 초기화
   todoInput.value = "";
 };
@@ -108,6 +156,9 @@ const init = () => {
 
   // Progress Bar 세팅
   updateItemCount();
+
+  // Local Storage 불러오기
+  loadLocalStorage();
 };
 
 init();
