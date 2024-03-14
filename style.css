@@ -67,7 +67,6 @@ margin-top: 0.7rem;
     -webkit-appearance: none; /*사파리에서 스타일 깨짐..*/
     -moz-appearance: none;
     appearance: none;
-
     font-size: 0.875rem;
     font-weight: 500;
     background-color: #FFFFEF;
@@ -75,11 +74,16 @@ margin-top: 0.7rem;
     margin-top: 0.825rem;
     padding: 0.4375rem;
     padding-bottom: 0.2rem;
-    border: none;
     outline: none; 
-    border-bottom: 0.075rem solid gray; 
     width: 55%;
     margin-left: 0.625rem;
+    border-style: solid;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom: 0.075rem solid gray; 
+    border-radius: 0%;
+
+
     ::placeholder {
       color: #ced4da;
     }
