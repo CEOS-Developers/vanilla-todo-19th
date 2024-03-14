@@ -35,9 +35,8 @@
 
 ## localStorage 자료 구조 설계
 
-1. 우선 가장 큰 key 값을 2개임 : todoList와 doneList
-2. 해당 객체들은 value가 객체인데, 객체들의 key값은 다시 날짜로 나뉨. 이 key에 대응하는 value는 할일 목록들이 담긴 배열
-3. 처음 DOM에 마운트 될때 날짜는 현재 날짜가 되어야 하고, 사용자가 picker UI로부터 날짜를 고르면 날자 변수, todo변수, done 변수가 모두 업데이트 되어 UI에 동기화를 시킬 필요가 있다.
+1. localStorage에 저장되는 자료들은 YYYY-MM-DD + todo, YYYY-MM-DD + done을 key 값으로 가지며 대응하는 value는 할일 들을 담은 리스트에 해당한다
+2. 처음 DOM에 마운트 될때 날짜는 현재 날짜가 되어야 하고, 사용자가 picker UI로부터 날짜를 고르면 날자 변수, todo변수, done 변수가 모두 업데이트 되어 UI에 동기화를 시킬 필요가 있다.
 
 ## 날짜 별 기능 구현 사항
 
