@@ -16,13 +16,13 @@ body {
 
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   max-width: 70%;
   margin: 0 auto;
 }
 
+/* header */
 header {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,4 +31,30 @@ header {
 
 header span {
   font-size: 20px;
+}
+
+/*Todo Input*/
+.input-box {
+  background-color: #c0e0fe;
+  border-radius: 7px;
+  height: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 10px;
+  padding: 0 10px;
+}
+
+.input-box input {
+  border: none;
+  border-bottom: 1px solid #7d7e7e;
+  background-color: transparent;
+  outline: none;
+  font-size: 14px;
+  padding: 3px 2px;
+}
+
+.input-box button {
+  background-color: transparent;
+  border: none;
 }
