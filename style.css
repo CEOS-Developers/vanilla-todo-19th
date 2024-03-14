@@ -1,1 +1,224 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #252423;
+}
+h1 {
+  font-size: 1.125rem;
+  color: #e9ecef;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 할일 추가 애니메이션 */
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-down {
+  animation: slideDownFadeIn 0.2s ease-out forwards;
+}
+/*  */
+
+/* 할일 삭제 애니메이션 */
+@keyframes fadeOutScaleDown {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+.animate-fade-out {
+  animation: fadeOutScaleDown 0.3s ease-out forwards;
+}
+/*  */
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.header {
+  width: 100%;
+  height: 6vh;
+  background-color: #1b1a19;
+
+  color: #e9ecef;
+  text-align: left;
+  padding-left: 45px;
+  line-height: 6vh;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #484644;
+}
+
+.todoContainer {
+  width: 50%;
+  min-height: 95vh;
+  background-color: #1b1a19;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#todayDate {
+  font-size: 0.625rem;
+  color: gray;
+  margin: 6px 0 0 1px;
+}
+.WriteForm {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #252423;
+}
+
+.writeTodoForm {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 15px 0 15px;
+  /* border-bottom: 1px solid #8e8986; */
+}
+.InputFront {
+  width: 15%;
+  height: 50px;
+}
+.TodoInput {
+  width: 100%;
+  height: 50px;
+  background-color: #252423;
+  outline: none;
+  border: none;
+  color: #e9ecef;
+  padding: 10px;
+}
+.TodoInput::placeholder {
+  color: #788bff; /* Placeholder 텍스트 색상 변경 */
+}
+.check_icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 15px 0 0px;
+  fill: #788bff;
+}
+
+.SubmitTodo {
+  width: 100%;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 5px;
+}
+.submitBtn {
+  cursor: pointer;
+  background-color: #252423;
+  border: 1px solid #788bff;
+  width: 36px;
+  height: 22px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  color: #788bff;
+}
+.submitBtn:hover {
+  background-color: #3c3a39;
+}
+
+.todoList {
+  width: 100%;
+  list-style: none;
+}
+
+.todoList li {
+  width: 100%;
+  height: 52px;
+  border-radius: 10px;
+  font-size: 0.81rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  background-color: #252423;
+  padding-right: 5px;
+  margin: 5px 0px;
+  padding: 0 15px 0 15px;
+  color: #cdcdcd;
+}
+.todoList li span {
+  width: 100%;
+  padding: 0px 26.1px;
+  font-size: 0.73rem;
+}
+
+.todoList li input {
+  width: 20px;
+  height: 20px;
+}
+
+.todoList li button {
+  cursor: pointer;
+  background-color: #252423;
+  border: 1px solid #788bff;
+  width: 36px;
+  height: 22px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  color: #788bff;
+}
+.todoList li button:hover {
+  background-color: #3c3a39;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .wrapper,
+  .todoContainer {
+    width: 100%;
+  }
+
+  .header {
+    padding-left: 20px;
+  }
+
+  .WriteForm,
+  .writeTodoForm,
+  .TodoInput {
+    height: 45px;
+  }
+
+  .TodoInput {
+    padding: 8px;
+  }
+
+  .todoList li {
+    height: 45px;
+  }
+
+  .submitBtn,
+  .todoList li button {
+    width: 40px;
+    height: 25px;
+    font-size: 10px;
+  }
+}
