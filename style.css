@@ -188,3 +188,41 @@ h1 {
 .todoList li button:hover {
   background-color: #3c3a39;
 }
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .wrapper,
+  .todoContainer {
+    width: 100%;
+  }
+
+  .header {
+    padding-left: 20px;
+    font-size: 1rem;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .WriteForm,
+  .writeTodoForm,
+  .TodoInput {
+    height: 45px;
+  }
+
+  .TodoInput {
+    padding: 8px;
+  }
+
+  .todoList li {
+    height: 45px;
+  }
+
+  .submitBtn,
+  .todoList li button {
+    width: 40px;
+    height: 25px;
+    font-size: 10px;
+  }
+}
