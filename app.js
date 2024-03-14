@@ -26,6 +26,14 @@ function removeAllChildNodes(parent) {
   }
 }
 
+function makeUniqueTodoIDByDate() {
+  const now = Date.now();
+  const stringNow = now.toString();
+  return stringNow;
+}
+
+makeUniqueTodoIDByDate();
+
 // 모든 todo리스트를 지우고 로컬 스토리지에 업데이트된 것으로 다시 마운트하는 함수
 function getDownAllTodoItemsFromDomAndRemount() {
   removeAllChildNodes(todoListAreaDiv);
@@ -103,7 +111,7 @@ function addNewTodoListToShowingUI(newTodo) {
   showingTodoDiv.classList.add('showingTodo');
   const showingTodoText = document.createElement('span');
   showingTodoText.classList.add('showingTodoText');
-  showingTodoText.innerText = newTodo;
+  showingTodoText.innerText = newTodo.slice(0, newTodo.length - 13);
   showingTodoDiv.appendChild(showingTodoText);
 
   const showingCheckImage = document.createElement('img');
@@ -171,7 +179,7 @@ function addNewDoneListToShowingUI(done) {
   showingDoneDiv.classList.add('showingDone');
   const showingDoneText = document.createElement('span');
   showingDoneText.classList.add('showingDoneText');
-  showingDoneText.innerText = done;
+  showingDoneText.innerText = done.slice(0, done.length - 13);
   showingDoneDiv.appendChild(showingDoneText);
 
   const showingBackImage = document.createElement('img');
@@ -200,6 +208,9 @@ function addNewDoneListToShowingUI(done) {
 
 // 가져온 현재 날짜의 todoList를  UI로 보여줌
 todoList.forEach((todo) => {
+  todoLength = todo.length;
+  console.log(todoLength);
+  // realTodo = todo.slice(0, todoLength - 13);
   addNewTodoListToShowingUI(todo);
 });
 
@@ -209,7 +220,10 @@ doneList.forEach((done) => {
 });
 
 // 사용자가 input box에 내용을 입력하고 엔터 키를 누르거나 제출 버튼을 눌러 제출할 때 트리거 되는 함수. 내부에서 유효성 검사를 수행한다.
-function handleSubmitInputBoxByEnterKeyOrSubmitButton() {
+function handleSubmitInputBoxByEnterKeyOrSubmitButton(
+  nowInputBoxValue,
+  nowTimeString
+) {
   const inputBoxValue = inputBox.value.trim();
   if (inputBoxValue === '') {
     alert('내용을 입력한 뒤에 todo 리스트에 등록하세요');
@@ -217,11 +231,11 @@ function handleSubmitInputBoxByEnterKeyOrSubmitButton() {
   }
 
   todoList.push(inputBoxValue);
-  addNewTodoListToShowingUI(inputBoxValue); // UI에 반영해 주었음
+  addNewTodoListToShowingUI(`${nowInputBoxValue}${nowTimeString}`); // UI에 반영해 주었음
   inputBox.value = '';
 }
 
-function addTodoItemToLocalStrage(todoItem) {
+function addTodoItemToLocalStrage(nowInputBoxValue, nowTimeString) {
   const nowDateFormatString = getNowDateFormatString();
   // 뒤져서 없으면 만들어주고, 있으면 추가해서 새로 넣어줘야 함
   const localStorageKey = `${nowDateFormatString}todo`;
@@ -231,20 +245,32 @@ function addTodoItemToLocalStrage(todoItem) {
       : JSON.parse(localStorage.getItem(localStorageKey));
 
   let newLocalStorageData = [...prevLocalStorageData];
-  newLocalStorageData.push(todoItem);
+
+  newLocalStorageData.push(`${nowInputBoxValue}${nowTimeString}`);
   localStorage.setItem(localStorageKey, JSON.stringify(newLocalStorageData));
 }
 
 // input box에 포커싱이 되어 있고 엔터키가 눌리면 UI 추가가 되어야 함
 inputBox.addEventListener('keydown', (event) => {
+  const nowTimeString = makeUniqueTodoIDByDate();
+  const nowInputBoxValue = inputBox.value.trim();
   if (event.keyCode === 13) {
-    addTodoItemToLocalStrage(inputBox.value.trim());
-    handleSubmitInputBoxByEnterKeyOrSubmitButton();
+    if (nowInputBoxValue !== '') {
+      addTodoItemToLocalStrage(nowInputBoxValue, nowTimeString);
+    }
+
+    handleSubmitInputBoxByEnterKeyOrSubmitButton(
+      nowInputBoxValue,
+      nowTimeString
+    );
   }
 });
 
 submitButton.addEventListener('click', () => {
-  addTodoItemToLocalStrage(inputBox.value.trim());
+  if (inputBox.value.trim() !== '') {
+    addTodoItemToLocalStrage(inputBox.value.trim());
+  }
+
   handleSubmitInputBoxByEnterKeyOrSubmitButton();
 });
 

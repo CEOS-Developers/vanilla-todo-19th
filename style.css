@@ -130,6 +130,7 @@ body {
   align-items: flex-start;
   padding-top: 15px;
   max-height: calc(100% * 5 / 7);
+  /* position: relative; */
   /* height: inherit; */
   /* overflow-y: hidden; */
 }
@@ -140,22 +141,29 @@ body {
   align-items: center;
   max-height: 100%;
   flex-grow: 1;
+  flex-shrink: 0;
   overflow-y: scroll;
+  height: 100%;
+  min-height: 100%;
+}
+
+.todo-area,
+.done-area {
+  min-width: 50%;
+  position: relative;
 }
 
 .label-span {
-  position: absolute;
+  position: relative;
   flex-shrink: 0;
   flex-grow: 3;
   display: block;
   width: 100%;
-  max-height: 15%;
-  height: 15%;
   text-align: center;
 }
 
 .showing-list-area {
-  margin-top: 15%;
+  /* margin-top: 15%; */
   flex-grow: 17;
   flex-shrink: 0;
   width: 100%;
@@ -166,6 +174,8 @@ body {
   justify-content: flex-start;
   align-items: center;
   overflow-y: scroll;
+  position: absolute;
+  top: 15%;
 }
 
 .showingTodo,
