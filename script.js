@@ -166,11 +166,11 @@ const init = () => {
   });
   plusBtn.addEventListener("click", addTodo);
 
-  // Progress Bar 세팅
-  updateItemCount();
-
   // Local Storage 불러오기
   loadLocalStorage();
+
+  // Progress Bar 세팅
+  updateItemCount();
 };
 
 init();
