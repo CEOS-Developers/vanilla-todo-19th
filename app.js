@@ -116,7 +116,7 @@ function addNewTodoListToShowingUI(newTodo) {
 
   const showingCheckImage = document.createElement('img');
   showingCheckImage.classList.add('checkImage');
-  showingCheckImage.src = 'public/assets/images/check-solid.svg';
+  showingCheckImage.src = 'assets/images/check-solid.svg';
   showingCheckImage.alt = 'This is check image';
   showingCheckImage.addEventListener('click', () => {
     moveTodoToDone(newTodo);
@@ -124,7 +124,7 @@ function addNewTodoListToShowingUI(newTodo) {
 
   const showingTrashCanImage = document.createElement('img');
   showingTrashCanImage.classList.add('trashCanImage');
-  showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
+  showingTrashCanImage.src = 'assets/images/trash-solid.svg';
   showingTrashCanImage.alt = 'This is trash can image';
   showingTrashCanImage.addEventListener('click', () => {
     removeFromTodo(newTodo);
@@ -184,7 +184,7 @@ function addNewDoneListToShowingUI(done) {
 
   const showingBackImage = document.createElement('img');
   showingBackImage.classList.add('backImage');
-  showingBackImage.src = 'public/assets/images/arrow-left-long-solid.svg';
+  showingBackImage.src = 'assets/images/arrow-left-long-solid.svg';
   showingBackImage.alt = 'This is back image';
   showingBackImage.addEventListener('click', () => {
     moveDoneToTodo(done);
@@ -192,7 +192,7 @@ function addNewDoneListToShowingUI(done) {
 
   const showingTrashCanImage = document.createElement('img');
   showingTrashCanImage.classList.add('trashCanImage');
-  showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
+  showingTrashCanImage.src = 'assets/images/trash-solid.svg';
   showingTrashCanImage.alt = 'This is trash can image';
   showingTrashCanImage.addEventListener('click', () => {
     removeFromDone(done);

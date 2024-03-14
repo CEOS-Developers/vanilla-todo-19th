@@ -61,7 +61,7 @@ h6 {
 body {
   min-height: 100vh;
   max-height: 100vh;
-  background-image: url('./public/assets/images/background-image.jpg');
+  background-image: url('./assets/images/background-image.jpg');
   /* background-color: rgba(255, 255, 255, 0.5);  */
   background-position: center;
   display: flex;
