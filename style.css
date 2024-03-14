@@ -35,7 +35,7 @@ header h2 {
   font-size: 24px;
 }
 
-header span {
+header .date /*가독성을 위해 header를 붙여줌*/ {
   font-size: 20px;
 }
 
@@ -63,6 +63,7 @@ header span {
 .input-box button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /*Todo Box*/
