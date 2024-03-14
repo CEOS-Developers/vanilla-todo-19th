@@ -107,7 +107,6 @@ const deleteItem = (e) => {
   } else {
     todoArr = todoArr.filter((element) => element !== todoListNode.textContent);
   }
-  console.log("todoArr:" + todoArr + "\n" + "doneArr:" + doneArr);
 
   // Progess bar 업데이트
   updateItemCount();
