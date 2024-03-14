@@ -91,3 +91,7 @@ header .date /*가독성을 위해 header를 붙여줌*/ {
   display: grid;
   row-gap: 10px;
 }
+
+.todo-box li {
+  cursor: pointer;
+}

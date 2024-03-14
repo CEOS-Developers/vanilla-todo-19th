@@ -9,6 +9,25 @@ const getTodayDate = () => {
   return `${year}.${month}.${day}`;
 };
 
+// Todo <-> Done 이동 함수
+const moveItem = (e) => {
+  const isDone = e.target.classList.contains("done");
+  const todoUl = document.querySelector(".todo-box__todo ul");
+  const doneUl = document.querySelector(".todo-box__done ul");
+  if (isDone) {
+    doneUl.appendChild(e.target);
+    // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
+  } else {
+    todoUl.appendChild(e.target);
+  }
+};
+
+// Todo 또는 Done class 토글 함수
+const toggleTodo = (e) => {
+  e.target.classList.toggle("done");
+  moveItem(e);
+};
+
 // 할일 추가 함수
 const addTodo = () => {
   // input에 입력한 값 가져오기
@@ -18,6 +37,7 @@ const addTodo = () => {
   // li element 생성 후 input 값 세팅
   const todoListNode = document.createElement("li");
   todoListNode.textContent = todoInputText;
+  todoListNode.addEventListener("click", toggleTodo);
 
   // 추가
   const todoUl = document.querySelector(".todo-box__todo ul");
