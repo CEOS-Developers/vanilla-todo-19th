@@ -49,6 +49,19 @@ function moveTodoToDone(itemName) {
   location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
 }
 
+function removeFromTodo(itemName) {
+  console.log('hi remove');
+  console.log(itemName);
+  const todayDate = todayDateInput.value;
+  let prevTodoList = JSON.parse(localStorage.getItem(`${todayDate}todo`));
+  const index = prevTodoList.indexOf(itemName);
+  if (index !== -1) {
+    prevTodoList.splice(index, 1);
+  }
+  localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList));
+  location.reload();
+}
+
 // 새로운 요소를 할일 UI 쪽에 추가하는 함수. 새로운 dom 요소를 생성하여 UI에 반영함
 function addNewTodoListToShowingUI(newTodo) {
   const showingTodoDiv = document.createElement('div');
@@ -70,6 +83,9 @@ function addNewTodoListToShowingUI(newTodo) {
   showingTrashCanImage.classList.add('trashCanImage');
   showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
   showingTrashCanImage.alt = 'This is trash can image';
+  showingTrashCanImage.addEventListener('click', () => {
+    removeFromTodo(newTodo);
+  });
 
   const showingImageContainerDiv = document.createElement('div');
   showingImageContainerDiv.classList.add('showingImageContainerDiv');
@@ -97,6 +113,17 @@ function moveDoneToTodo(itemName) {
   location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
 }
 
+function removeFromDone(itemName) {
+  const todayDate = todayDateInput.value;
+  let prevDoneList = JSON.parse(localStorage.getItem(`${todayDate}done`));
+  const index = prevDoneList.indexOf(itemName);
+  if (index !== -1) {
+    prevDoneList.splice(index, 1);
+  }
+  localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // 기존의 로컬스토리지 todo에서 지우는 로직
+  location.reload();
+}
+
 function addNewDoneListToShowingUI(done) {
   const showingDoneDiv = document.createElement('div');
   showingDoneDiv.classList.add('showingDone');
@@ -117,6 +144,9 @@ function addNewDoneListToShowingUI(done) {
   showingTrashCanImage.classList.add('trashCanImage');
   showingTrashCanImage.src = 'public/assets/images/trash-solid.svg';
   showingTrashCanImage.alt = 'This is trash can image';
+  showingTrashCanImage.addEventListener('click', () => {
+    removeFromDone(done);
+  });
 
   const showingImageContainerDiv = document.createElement('div');
   showingImageContainerDiv.classList.add('showingImageContainerDiv');
