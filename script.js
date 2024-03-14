@@ -10,8 +10,8 @@ const getTodayDate = () => {
   const today = new Date();
 
   const year = today.getFullYear();
-  const month = ("0" + (today.getMonth() + 1)).slice(-2); //❗고민
-  const day = ("0" + today.getDate()).slice(-2); //❗고민
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
 
   return `${year}.${month}.${day}`;
 };
@@ -70,12 +70,9 @@ const updateItemCount = () => {
   progressBarCount.textContent = `${doneCount} / ${totalCount}`;
 
   const progressBarDone = document.querySelector(".progress-box__bar-done");
-  if (totalCount > 0) {
-    const progessBarPercent = (doneCount / totalCount) * 100;
-    progressBarDone.style.width = `${progessBarPercent}%`;
-  } else if (totalCount === 0) {
-    progressBarDone.style.width = "0%";
-  }
+  let doneRatio = 0;
+  if (totalCount !== 0) doneRatio = (doneCount / totalCount) * 100;
+  progressBarDone.style.width = `${doneRatio}%`;
 };
 
 // Todo 또는 Done class 토글 함수
@@ -86,7 +83,7 @@ const toggleTodo = (e) => {
   moveItem(todoListNode);
   // Progess bar 업데이트
   updateItemCount();
-
+  // Local Storage 업데이트
   setLocalStorage();
 };
 
@@ -106,7 +103,7 @@ const deleteItem = (e) => {
 
   // Progess bar 업데이트
   updateItemCount();
-
+  // Local Storage 업데이트
   setLocalStorage();
 };
 
@@ -150,7 +147,7 @@ const addTodo = () => {
 
   // Progess bar 업데이트
   updateItemCount();
-
+  // Local Storage 업데이트
   setLocalStorage();
 
   // input value 초기화
