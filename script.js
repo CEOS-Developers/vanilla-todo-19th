@@ -167,7 +167,7 @@ function getCurrentDateFormatted() {
     const isAllCompleted = totalItems === completedItems;
 
     //100% 완료 -> 할일 색상 변경
-    if (isAllCompleted) {
+    if (isAllCompleted&& totalItems!==0) {
         taskInfo.style.color = '#fff'; 
         taskInfo.style.backgroundColor = '#FB84DA';
         taskInfo.style.borderRadius = '15%';
