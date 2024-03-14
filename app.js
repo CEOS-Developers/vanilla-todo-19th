@@ -8,6 +8,7 @@ const doneListAreaDiv = document
   .querySelector('.showing-list-area');
 
 const inputBox = document.querySelector('.todo-input');
+const submitButton = document.querySelector('.submit-button');
 
 const todayDateInput = document.querySelector('.date-input');
 const currentDate = new Date(); // 현재의 날짜에 해당함
@@ -78,7 +79,7 @@ function moveTodoToDone(itemName) {
       : JSON.parse(localStorage.getItem(`${todayDate}done`));
   prevDoneList.push(itemName);
   localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // done 로컬 스토리지에 반영하는 로직
-  // location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+
   getDownAllTodoItemsFromDomAndRemount();
   getDownAllDoneItemsFromDomAndRemount();
 }
@@ -93,7 +94,7 @@ function removeFromTodo(itemName) {
   }
   localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList));
   getDownAllTodoItemsFromDomAndRemount();
-  // done도 새로 반영?
+  // done에 대한 연산은 굳이 불필요하므로 리소스 상 하지 않는다
 }
 
 // 새로운 요소를 할일 UI 쪽에 추가하는 함수. 새로운 dom 요소를 생성하여 UI에 반영함
@@ -146,7 +147,7 @@ function moveDoneToTodo(itemName) {
       : JSON.parse(localStorage.getItem(`${todayDate}todo`));
   prevTodoList.push(itemName);
   localStorage.setItem(`${todayDate}todo`, JSON.stringify(prevTodoList)); // done 로컬 스토리지에 반영하는 로직
-  // location.reload(); // UI에서 dom 요소를 pick해서 removeChild하는 로직보다 아예 페이지 리페인트가 로직이 덜 복잡함
+
   getDownAllTodoItemsFromDomAndRemount();
   getDownAllDoneItemsFromDomAndRemount();
 }
@@ -161,6 +162,7 @@ function removeFromDone(itemName) {
   }
   localStorage.setItem(`${todayDate}done`, JSON.stringify(prevDoneList)); // 기존의 로컬스토리지 todo에서 지우는 로직
   getDownAllDoneItemsFromDomAndRemount();
+  // 여기에서도 todo에 대한 dom 작업은 따로 하지 않음
 }
 
 //새로운 done 항목을 UI에 추가해주는 로직
@@ -239,6 +241,11 @@ inputBox.addEventListener('keydown', (event) => {
     addTodoItemToLocalStrage(inputBox.value.trim());
     handleSubmitInputBoxByEnterKeyOrSubmitButton();
   }
+});
+
+submitButton.addEventListener('click', () => {
+  addTodoItemToLocalStrage(inputBox.value.trim());
+  handleSubmitInputBoxByEnterKeyOrSubmitButton();
 });
 
 todayDateInput.addEventListener('change', () => {

@@ -107,11 +107,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 5px;
 }
 
 .input-box-section > input {
   display: block;
   width: 60%;
+}
+
+.submit-button {
+  border: 1px solid black;
+}
+
+.submit-button:hover {
+  cursor: pointer;
 }
 
 .list-section {
