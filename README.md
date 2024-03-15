@@ -30,14 +30,12 @@ https://agijagi-todo-blue.vercel.app/
 - appendChild()의 중요한 특징: Todo->Done 이동할 때(Done->Todo도 마찬가지) done의 ul에 li를 appendChild() 메소드로 추가하고, todo의 ul에서는 해당 li를 remove 해주어야 한다고 생각했는데, done에 appendChild()만 해줘도 todo에서 자동으로 remove 되는 현상이 발생했습니다!😮 원하던 기능이라 이게 왜 되지..?? 했는데..!
 
   > appendChild() 메소드는 한 노드를 특정 부모 노드의 자식 노드 리스트 중 마지막 자식으로 붙입니다. 만약 주어진 노드가 이미 문서에 존재하는 노드를 참조하고 있다면 appendChild() 메소드는 노드를 현재 위치에서 새로운 위치로 이동시킵니다. (문서에 존재하는 노드를 다른 곳으로 붙이기 전에 부모 노드로 부터 지워버릴 필요는 없습니다.)
-  > <br> 출처: [MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Node/appendChild)
 
   우왕.. 또 새롭게 알아갑니다!
 
 * 웹 접근성의 의미: 참고 자료에서 알게된 내용입니다.
 
   > 고령자, 장애인 같은 신체적, 환경적 조건에 제한이 있는 사용자를 포함해 모든 사용자들이 동등하게 접근할 수 있는 웹 콘텐츠를 제작하는 방법을 말합니다.
-  > <br>출처: [올려주신 참고 자료](https://www.wah.or.kr:444/Accessibility/define.asp)
 
   이전까지는 웹 접근성이라는게 그냥 단순히 사용자가 웹 페이지에 잘 접근할 수 있는 정도를 의미하는 줄 알았는데 이런 의미를 지니고 있었다니.. 정말 중요한 개념이네요.
 
@@ -46,7 +44,6 @@ https://agijagi-todo-blue.vercel.app/
 * innerText vs. textContent
 
   > textContent는 `<script>`와 `<style>` 요소를 포함한 모든 요소의 텍스트 콘텐츠를 가져옵니다. 반면 innerText는 "사용자에게 보여지는" 요소의 텍스트 콘텐츠만 가져옵니다.
-  > <br>출처: [MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Node/textContent#innertext%EC%99%80%EC%9D%98_%EC%B0%A8%EC%9D%B4%EC%A0%90)
 
   [이 블로그](https://velog.io/@kim_unknown_/JavaScript-Difftext)의 예제를 보면 아주 잘 이해할 수 있습니다.
 
@@ -66,12 +63,11 @@ https://agijagi-todo-blue.vercel.app/
 ### 1. DOM은 무엇인가요?
 
 > DOM(Document Object Model, 문서 객체 모델)은 HTML, XML 문서의 Programming interface 이다. DOM은 문서의 구조화된 표현(structured representation)을 제공하며 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다
-> <br> 출처: [MDN 문서](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)
 
 DOM은 Javascript가 HTML에 접근하여 제어할 수 있도록 하는 도구이다.
 웹페이지 문서의 구조를 표현하는 HTML은 컴퓨터에게는 그냥 줄글일 뿐이고, 이를 구조화하기 위하여 HTML parser를 통해 DOM tree를 생성한다.
 
-![DOM tree](image.png)
+![![DOM tree](image.png)](src/DOM-tree.png)
 
 이 DOM tree는 HTML 태그를 객체로 바꿔줘서, Javascript가 이 객체의 다양한 프로퍼티와 메소드(DOM API)를 통해 웹 페이지를 제어할 수 있게 된다.
 
@@ -115,7 +111,7 @@ DOM API에는 querySelector, innerText, nodeList, classList, addEventListener �
 
 **Semantic tag의 종류**
 
-![Semantic tag](image-1.png)
+![![Semantic tag](image-1.png)](src/semantic-tag.png)
 
 - `<header>` : 사이트의 헤더 영역에 사용, 주로 사이트의 로고나 이름 등이 포함된다.
 - `<nav>` : 내비게이션을 의미하는 태그로, 주로 메뉴 영역에 사용된다.
