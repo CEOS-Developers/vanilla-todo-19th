@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://webfontworld.github.io/pretendard/Pretendard.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <h1 class="title">To-Do List</h1>
+      <form id="todo-form">
+        <input type="text" class="input" placeholder="할 일을 입력하세요." />
+      </form>
+      <section class="text-container">
+        <h3 id="date"></h3>
+        <h3 id="count"></h3>
+      </section>
+      <div class="list-container">
+        <ul id="todo-list"></ul>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
