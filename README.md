@@ -1,5 +1,7 @@
 # 1주차 미션: Vanilla-Todo
 
+배포 링크 : https://vanilla-todo-19th-five.vercel.app/
+
 # 서론
 
 안녕하세요 🙌🏻 19기 프론트엔드 운영진 **변지혜**입니다.
