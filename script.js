@@ -5,27 +5,6 @@ const toDoList = document.getElementById('todo-list');
 let toDoArr = [];
 let doneToDoArr = [];
 
-// 로컬스토리지 저장 함수
-function saveToDo() {
-  localStorage.setItem('toDoArr', JSON.stringify(toDoArr));
-  localStorage.setItem('doneToDoArr', JSON.stringify(doneToDoArr));
-}
-
-function loadFromLocalStorage() {
-  const savedToDo = localStorage.getItem('toDoArr');
-  const savedDoneToDo = localStorage.getItem('doneToDoArr');
-  if (savedToDo !== null) {
-    const parsedToDo = JSON.parse(savedToDo);
-    toDoArr = parsedToDo; // toDo를 toDoArr로 변경
-    parsedToDo.forEach(showToDo);
-  }
-
-  if (savedDoneToDo !== null) {
-    const parsedDoneToDo = JSON.parse(savedDoneToDo);
-    doneToDoArr = parsedDoneToDo;
-  }
-}
-
 // 할 일 목록 추가 함수
 function submitToDo(event) {
   event.preventDefault(); // submit 새로고침 방지
@@ -45,7 +24,7 @@ function submitToDo(event) {
 toDoForm.addEventListener('submit', submitToDo);
 
 // 입력 받은 할 일 목록 출력 함수
-function showToDo(newToDo) {
+function showToDo(newToDo, isChecked = false) {
   const listItem = document.createElement('li');
   const span = document.createElement('span');
   const buttonsContainer = document.createElement('div');
@@ -59,9 +38,9 @@ function showToDo(newToDo) {
 
   span.innerText = newToDo;
 
-  // doneToDoArr 배열에 현재 할 일이 존재하는지 확인하여 밑줄 그어줌
-  if (doneToDoArr.includes(newToDo)) {
-    span.classList.add('text-decoration-line-through');
+  if (isChecked) {
+    span.classList.add('text-decoration-line-through'); // 체크 상태 반영
+    checkButton.classList.add('checked');
   }
 
   deleteButton.addEventListener('click', () => {
@@ -74,6 +53,8 @@ function showToDo(newToDo) {
   checkButton.addEventListener('click', () => {
     const isCompleted = span.classList.contains('text-decoration-line-through');
     span.classList.toggle('text-decoration-line-through', !isCompleted); // CSS 클래스를 통해 스타일 변경
+
+    checkButton.classList.toggle('checked', !isCompleted);
 
     if (!isCompleted) {
       doneToDoArr.push(newToDo); // 체크되면 doneToDoArr에 추가
@@ -104,6 +85,33 @@ function deleteToDo(index, todoText) {
   updateCount();
 }
 
+// 로컬스토리지 저장 함수
+function saveToDo() {
+  localStorage.setItem('toDoArr', JSON.stringify(toDoArr));
+  localStorage.setItem('doneToDoArr', JSON.stringify(doneToDoArr));
+}
+
+// 로컬스토리지에서 목록 불러오는 함수
+function loadFromLocalStorage() {
+  const savedDoneToDo = localStorage.getItem('doneToDoArr');
+  const savedToDo = localStorage.getItem('toDoArr');
+
+  if (savedDoneToDo !== null) {
+    const parsedDoneToDo = JSON.parse(savedDoneToDo);
+    doneToDoArr = parsedDoneToDo;
+  }
+
+  if (savedToDo !== null) {
+    const parsedToDo = JSON.parse(savedToDo);
+    toDoArr = parsedToDo;
+    parsedToDo.forEach((toDoItem) => {
+      const isChecked = doneToDoArr.includes(toDoItem); // doneToDoArr에 포함되어 있으면 true
+      showToDo(toDoItem, isChecked); // 체크 상태 정보를 showToDo 함수로 전달
+    });
+  }
+}
+
+// 할 일 목록 개수 카운트 함수
 function updateCount() {
   const toDoCount = toDoArr.length;
   const doneToDoCount = doneToDoArr.length;

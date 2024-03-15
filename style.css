@@ -50,7 +50,6 @@ body {
   padding: 5px 15px;
   margin: 0;
   width: 100%;
-  cursor: pointer;
 }
 
 .todo-item {
@@ -86,7 +85,7 @@ body {
 }
 
 .check-btn {
-  background-image: url('img/check.svg');
+  background-image: url('img/greenCheck.svg');
   background-color: transparent;
   border: none;
   width: 20px;
@@ -96,6 +95,10 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   margin-right: 7px;
+}
+
+.check-btn.checked {
+  background-image: url('img/grayCheck.svg');
 }
 
 .text-container {
