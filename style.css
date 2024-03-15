@@ -1,1 +1,184 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    aspect-ratio: 7 / 4 ;
+    margin-top: 10vh;
+    border: 0.05rem solid #CBC0C0;
+    border-radius: 25px;
+    box-shadow: 5px 4px 4px #CBC0C0;
+    padding: 2rem;
+}
+
+/* 상단 to do list */
+.logo{
+    text-align: end;
+    color: #968E8E;
+    font-weight: 200;
+    font-size: 1.3rem;
+}
+
+
+/* 날짜 표기 */
+.date{
+    border-bottom: 0.05rem solid #968E8E;
+}
+.date h1{
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.date h3{
+    margin: 0.3rem;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+
+/* 하단 list 부분 */
+.show-lists{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-grow: 1;
+    margin-top: 0.5rem;
+}
+
+
+/* todo list */
+.todo-list-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-list-input{
+    width: 90%;
+    height: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.05rem solid #968E8E;
+}
+
+.todo-input{
+    border: none;
+    width: 90%;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+::placeholder{
+    color: black;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+.todo-input-button{
+    border: none;
+    margin-left: auto;
+    width: 10%;
+    background-color: #fff;
+    color: #2F82FE;
+    font-size: 3rem;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* done list 부분 */
+.done-list-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.done-title{
+    width: 90%;
+    height: 3.3rem;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
+
+
+/* lists가 차지하는 부분 */
+.todo-list-wrapper, .done-list-wrapper{
+    width: 90%;
+    height: max-content;
+}
+
+.todo-list-wrapper,.done-list-wrapper{
+    flex-grow: 1;
+    height: 100%;
+}
+
+.todo-lists, .done-lists{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* list 1개당 */
+.todo-div{
+    background-color: #fff;
+    list-style-type: none;
+    width: 100%;
+    height: 3rem;
+    border: 0.05rem solid #CBC0C0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px #CBC0C0;
+    margin: 0.3rem 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-li{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    padding: 0 1rem;
+}
+
+.done-button,
+.delete-button{
+   border-radius: 10px;
+   border: 0.05rem solid #fff;
+   width: 10%;
+   background-color: #fff;
+}
+
+.fa-circle-check,
+.fa-circle-minus{
+    pointer-events: none;
+}
+
+
+.done-div .delete-button{
+    display: block;
+}
+.done-div .done-button{
+    display: none;
+}
+
+
+/* list개수 표기 부분 */
+.show-todo-number, .show-done-number{
+   font-size: 1rem;
+   color: #968E8E;
+}

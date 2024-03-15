@@ -5,10 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
   </head>
 
   <body>
-    <div class="container"></div>
+    <main class="container">
+      <div class = "logo">to do list</div>
+      <!-- 날짜 표기 -->
+      <article class="date">
+        <h1 id = 'date'></h1>
+        <h3 id = 'week'></h3>
+      </article>
+
+      <!-- list 표시되는 구간 -->
+      <article class="show-lists">
+        <section class="todo-list-container">
+          <!-- list 입력 필드 -->
+          <div class="todo-list-input">
+            <input class="todo-input" placeholder="To do"/>
+            <button class="todo-input-button">+</button>
+          </div>
+          <div class="todo-list-wrapper">
+            <ul class="todo-lists"></ul>
+          </div>
+          <div class="show-todo-number">
+          </div>
+        </section>
+
+        <!-- done list 표시 -->
+        <section class="done-list-container">
+          <div class="done-title">Done</div>
+          <div class="done-list-wrapper">
+            <ul class="done-lists"></ul>
+          </div>
+          <div class="show-done-number">
+          </div>
+        </section>
+      </article>
+    </main>
+    <script src="./script.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
