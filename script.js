@@ -83,6 +83,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		const sectionTitle = document.createElement('h3');
 
+		// 섹션 타이틀 업데이트 함수 호출해서 섹션 별 할일 개수 타이틀에 반영
+		updateSectionTitle(sectionTitle, section, index);
+
 		const deleteSectionBtn = document.createElement('button');
 		deleteSectionBtn.textContent = '섹션 삭제';
 		deleteSectionBtn.onclick = () => deleteSection(index);
@@ -134,3 +137,14 @@ document.addEventListener('DOMContentLoaded', function () {
 		localStorage.setItem(date, JSON.stringify(sections));
 	}
 });
+
+// 남은 할 일의 수 섹션 타이틀에 반영해주는 함수
+function updateSectionTitle(sectionTitle, section, index) {
+	const remainingCount = countSectionItems(section); // 남은 할 일 수 계산
+	sectionTitle.textContent = `${section.name} (남은 할 일: ${remainingCount})`;
+}
+
+function countSectionItems(section) {
+	// 완료되지 않은 할 일의 수를 계산
+	return section.items.filter((item) => !item.completed).length;
+}
