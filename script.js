@@ -77,7 +77,7 @@ const updateItemCount = () => {
 
   // 텍스트 세팅
   const progressText = document.querySelector(".progress-box__text");
-  if (doneCount === totalCount) {
+  if (totalCount !== 0 && doneCount === totalCount) {
     progressText.textContent = "대단해요 !";
   } else {
     progressText.textContent = "달려봐요 !";
