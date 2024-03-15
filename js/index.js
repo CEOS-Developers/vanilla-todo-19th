@@ -14,12 +14,15 @@ const getTodayDate = () => {
 };
 
 // 할 일 아이템 생성
-const createTodo = (text) => {
+const createTodo = (text, isDone = false) => {
   const newTodoItem = document.createElement('li');
 
   const circleIcon = document.createElement('i');
   circleIcon.classList.add('fa-regular', 'fa-circle', 'cursor-pointer');
-
+  if (isDone) {
+    circleIcon.classList.add('fa-check-circle');
+  }
+  circleIcon.addEventListener('click', moveTodo);
   newTodoItem.append(circleIcon);
 
   const todoText = document.createTextNode(text);
@@ -27,11 +30,11 @@ const createTodo = (text) => {
 
   const trashIcon = document.createElement('i');
   trashIcon.classList.add('fa-solid', 'fa-trash-can', 'cursor-pointer');
+  trashIcon.addEventListener('click', deleteTodo);
   newTodoItem.append(trashIcon);
 
   return newTodoItem;
 };
-
 // 할 일 추가 이벤트 핸들러
 const addTodo = (e) => {
   e.preventDefault();
@@ -88,6 +91,7 @@ const saveToLocalStorage = () => {
   const todoListItems = Array.from($('.todo-list').children).map((todo) => todo.textContent);
   const doneListItems = Array.from($('.done-list').children).map((todo) => todo.textContent);
 
+  console.log(todoListItems);
   localStorage.setItem('todoList', JSON.stringify(todoListItems));
   localStorage.setItem('doneList', JSON.stringify(doneListItems));
 };
@@ -122,7 +126,8 @@ const init = () => {
   showUserName();
   $('.date').textContent = getTodayDate();
   $('.input-form').addEventListener('submit', addTodo);
-  loadTodoList();
+
+  loadFromLocalStorage();
 };
 
 // 초기 실행
