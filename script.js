@@ -2,18 +2,32 @@ const toDoForm = document.getElementById('todo-form');
 const toDoInput = document.querySelector('#todo-form input');
 const toDoList = document.getElementById('todo-list');
 
-let toDo = [];
+let toDoArr = [];
+let doneToDoArr = [];
 
 // 로컬스토리지 저장 함수
 function saveToDo() {
-  localStorage.setItem('toDo', JSON.stringify(toDo));
+  localStorage.setItem('toDoArr', JSON.stringify(toDoArr));
+  localStorage.setItem('doneToDoArr', JSON.stringify(doneToDoArr));
 }
 
-const savedToDo = localStorage.getItem('toDo');
+// 총 할 일 개수와 완료한 일 개수 출력 함수
+function updateCount() {
+  const toDoCount = toDoArr.length;
+  const doneToDoCount = doneToDoArr.length;
+  console.log(`총 할 일 개수: ${toDoCount}, 완료한 일 개수: ${doneToDoCount}`);
+}
+
+const savedToDo = localStorage.getItem('toDoArr');
+const savedDoneToDo = localStorage.getItem('doneToDoArr');
 if (savedToDo !== null) {
   const parsedToDo = JSON.parse(savedToDo);
   toDo = parsedToDo;
   parsedToDo.forEach(showToDo);
+}
+if (savedDoneToDo !== null) {
+  const parsedDoneToDo = JSON.parse(savedDoneToDo);
+  doneToDo = parsedDoneToDo;
 }
 
 // 할 일 목록 추가 함수
@@ -23,9 +37,10 @@ function SubmitToDo(event) {
 
   // 입력된 값이 빈 문자열이 아닐 경우에만 할 일 목록에 추가
   if (newToDo !== '') {
-    toDo.push(newToDo);
+    toDoArr.push(newToDo);
     showToDo(newToDo);
     saveToDo();
+    updateCount();
   }
 
   toDoInput.value = ''; // 입력필드 초기화
@@ -48,7 +63,7 @@ function showToDo(newToDo) {
   checkbox.type = 'checkbox';
   span.innerText = newToDo;
   deleteButton.addEventListener('click', () => {
-    const itemIndex = toDo.indexOf(newToDo);
+    const itemIndex = toDoArr.indexOf(newToDo);
     deleteToDo(itemIndex);
     listItem.remove(); // listItem을 DOM에서 직접 제거
   });
@@ -68,11 +83,11 @@ function showToDo(newToDo) {
   toDoList.appendChild(listItem); // listItem을 toDoList에 추가
 }
 
+// 할 일 목록 삭제 함수
 function deleteToDo(index) {
-  // 특정 인덱스의 할 일을 배열에서 제거
-  toDo.splice(index, 1);
-  // 로컬 스토리지 업데이트
-  localStorage.setItem('toDo', JSON.stringify(toDo));
+  toDoArr.splice(index, 1); // 특정 인덱스의 할 일을 배열에서 제거
+  saveToDo(); // 로컬 스토리지 업데이트
+  updateCount();
 }
 
 // 오늘의 날짜

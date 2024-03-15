@@ -39,9 +39,10 @@ body {
   background-color: white;
   border-radius: 10px;
   width: 365px;
-  height: auto;
+  height: 510px;
   display: flex;
   justify-content: flex-start;
+  overflow-y: auto;
 }
 
 .list-container ul {
