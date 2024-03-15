@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="./style/style.css" />
   </head>
 
-  <body>
-    <div class="container">
-      <div class="input-form">
-        <input />
-        <button>입력</button>
+  <body class="container">
+    <header class="flex-center">
+      <p class="date flex-center" />
+      <h1>TODO-LIST</h1>
+    </header>
+    <main>
+      <form class="input-form flex-center">
+        <input class="input" placeholder="할 일 입력하기" />
+        <button class="input-button">입력</button>
+      </form>
+      <div class="todo-list flex-center">
+        <div class="todo">Todo</div>
+        <div class="done">Done</div>
       </div>
-      <div class="todo">Todo</div>
-      <div class="done">Done</div>
-    </div>
+    </main>
   </body>
-  <script src="script.js" type="module"></script>
+  <script src="./js/script.js" type="module"></script>
 </html>

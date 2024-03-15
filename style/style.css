@@ -1,16 +1,44 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
 @import url('./reset.css');
 @import url('./global.css');
+@import url('./common.css');
 
 body {
   background: #f0f6ff;
 }
 
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .container {
-  width: 700px;
-  border: 1px;
+  display: flex;
+  padding: 3rem 0;
+
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
 }
 
-.todo {
-  width: ;
+.input-form {
+  display: flex;
+  width: 100%;
+  padding: 1.2rem;
+  border: 0.1rem solid #6d6afe;
+  gap: 2rem;
+  border-radius: 1rem;
+}
+
+.todo-list {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.input {
+  width: 40rem;
+  height: 2rem;
+}
+.input-button {
+  font-size: 2rem;
 }
