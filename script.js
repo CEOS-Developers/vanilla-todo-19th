@@ -18,7 +18,7 @@ function submitToDo(event) {
     updateCount();
   }
 
-  toDoInput.value = ''; // 입력필드 초기화
+  toDoInput.value = '';
 }
 
 toDoForm.addEventListener('submit', submitToDo);
@@ -46,7 +46,7 @@ function showToDo(newToDo, isChecked = false) {
   deleteButton.addEventListener('click', () => {
     const itemIndex = toDoArr.indexOf(newToDo);
     deleteToDo(itemIndex, newToDo);
-    listItem.remove(); // listItem을 DOM에서 직접 제거
+    listItem.remove();
   });
 
   // 체크 버튼 클릭 시 이벤트 리스너
@@ -57,20 +57,20 @@ function showToDo(newToDo, isChecked = false) {
     checkButton.classList.toggle('checked', !isCompleted);
 
     if (!isCompleted) {
-      doneToDoArr.push(newToDo); // 체크되면 doneToDoArr에 추가
+      doneToDoArr.push(newToDo);
     } else {
       const doneIndex = doneToDoArr.indexOf(newToDo);
       if (doneIndex !== -1) {
         doneToDoArr.splice(doneIndex, 1); // 체크 해제되면 doneToDoArr에서 제거
       }
     }
-    saveToDo(); // 변경된 doneToDoArr을 로컬 스토리지에 저장
+    saveToDo();
     updateCount();
   });
 
   buttonsContainer.append(checkButton, deleteButton);
   listItem.append(span, buttonsContainer);
-  toDoList.appendChild(listItem); // listItem을 toDoList에 추가
+  toDoList.appendChild(listItem);
 }
 
 // 할 일 목록 삭제 함수
@@ -81,7 +81,7 @@ function deleteToDo(index, todoText) {
   if (doneIndex !== -1) {
     doneToDoArr.splice(doneIndex, 1);
   }
-  saveToDo(); // 로컬 스토리지 업데이트
+  saveToDo();
   updateCount();
 }
 

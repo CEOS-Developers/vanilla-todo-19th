@@ -85,7 +85,7 @@ body {
 }
 
 .check-btn {
-  background-image: url('img/greenCheck.svg');
+  background-image: url('img/grayCheck.svg');
   background-color: transparent;
   border: none;
   width: 20px;
@@ -98,7 +98,7 @@ body {
 }
 
 .check-btn.checked {
-  background-image: url('img/grayCheck.svg');
+  background-image: url('img/greenCheck.svg');
 }
 
 .text-container {
