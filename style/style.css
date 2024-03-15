@@ -1,0 +1,16 @@
+/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@import url('./reset.css');
+@import url('./global.css');
+
+body {
+  background: #f0f6ff;
+}
+
+.container {
+  width: 700px;
+  border: 1px;
+}
+
+.todo {
+  width: ;
+}
