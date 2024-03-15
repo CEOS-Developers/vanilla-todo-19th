@@ -8,7 +8,36 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <main class="wrapper">
+      <header class="todoHeader">
+        <div class="headerDMY">
+          <span class="headerDate"></span>
+          <div class="headerMY">
+            <span class="headerMonth"></span>
+            <span class="headerYear"></span>
+          </div>
+        </div>
+        <div class="headerDay"></div>
+      </header>
+      <section class="todoSection">
+        <span>Todo</span>
+      </section>
+      <section class="doneSection">
+        <span>Done</span>
+      </section>
+      <section class="todoInputGroup">
+        <input
+          type="text"
+          placeholder="할 일을 입력해주세요..."
+          class="todoInput"
+        />
+        <button class="addTodo">+</button>
+      </section>
+      <footer class="todoFooter">
+        <span class="todoProgress"></span>
+        <span class="todo">todo List</span>
+      </footer>
+    </main>
   </body>
   <script src="script.js"></script>
 </html>

@@ -1,1 +1,166 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css');
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.wrapper {
+  width: 50%;
+  margin: 2rem auto;
+  background-color: white;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.todoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #cacaca;
+}
+
+.headerDMY {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.headerDate {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.headerMY {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerMonth {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #3c4044;
+}
+
+.headerYear {
+  font-size: 0.5rem;
+  color: #868e96;
+}
+
+.headerDay {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.todoSection,
+.doneSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow-y: scroll;
+}
+
+.todoSection span,
+.doneSection span {
+  padding: 0.25rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3c4044;
+}
+
+.todoCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.doneCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  color: #868e96;
+  & label {
+    text-decoration: line-through;
+  }
+  & div {
+    color: black;
+  }
+}
+
+.todoCard:hover,
+.doneCard:hover,
+.todoCheckbox:hover,
+.todoContent:hover {
+  background-color: #e9eaea;
+  cursor: pointer;
+}
+
+.todoContent {
+  font-size: 1.25rem;
+  flex-grow: 1;
+}
+
+.todoDelete {
+  width: 16px;
+  height: 20px;
+  border-radius: 4px;
+  text-align: center;
+  display: none;
+}
+
+.todoCard:hover .todoDelete,
+.doneCard:hover .todoDelete {
+  display: block;
+  cursor: pointer;
+}
+
+.todoDelete:hover {
+  background-color: #cacaca;
+}
+
+.todoInputGroup {
+  display: flex;
+  margin: 0 1rem 1rem 1rem;
+  gap: 0.5rem;
+}
+
+.todoInput {
+  width: 100%;
+  border: none;
+  border: 1px solid #868e96;
+  border-radius: 5px;
+  padding: 0.5rem;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.todoFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-top: 1px solid #cacaca;
+}
+
+.todoProgress {
+  font-size: 0.75rem;
+  color: #868e96;
+}
+
+.todo {
+  color: gray;
+}
