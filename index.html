@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
   </head>
 
   <body class="container">
@@ -14,12 +15,19 @@
     </header>
     <main>
       <form class="input-form flex-center">
-        <input class="input" placeholder="할 일 입력하기" />
-        <button class="input-button">입력</button>
+        <div class="input-wrapper">
+          <input class="input" placeholder="할 일 입력" />
+          <button class="input-button">입력</button>
+        </div>
+        <p class="error"></p>
       </form>
-      <div class="todo-list flex-center">
-        <div class="todo">Todo</div>
-        <div class="done">Done</div>
+      <div class="list-container flex-center">
+        <ul class="list todo-list">
+          <h2 class="label">Todo</h2>
+        </ul>
+        <ul class="list done-list">
+          <h2 class="label">Done</h2>
+        </ul>
       </div>
     </main>
   </body>
