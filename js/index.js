@@ -1,21 +1,19 @@
 import { $ } from './util.js';
 
+// 오늘 날짜 문자열 반환
 const getTodayDate = () => {
-  // 오늘 날짜
   const today = new Date();
-
-  // 년, 월, 일
   const year = today.getFullYear();
   const month = (today.getMonth() + 1).toString();
   const date = today.getDate().toString();
 
-  //요일 배열
   const dayToString = ['일', '월', '화', '수', '목', '금', '토'];
-
   const day = dayToString[today.getDay()];
+
   return `${year}년 ${month}월 ${date}일 ${day}요일`;
 };
 
+// 할 일 아이템 생성
 const createTodo = (text) => {
   const newTodoItem = document.createElement('li');
 
@@ -34,6 +32,7 @@ const createTodo = (text) => {
   return newTodoItem;
 };
 
+// 할 일 추가 이벤트 핸들러
 const addTodo = (e) => {
   e.preventDefault();
 
@@ -54,45 +53,45 @@ const addTodo = (e) => {
   updateListCount();
 };
 
+// 할 일 이동 이벤트 핸들러
 const moveTodo = (e) => {
   const circleIcon = e.target;
   const clickedTodo = circleIcon.parentNode;
+  const targetList = clickedTodo.closest('.todo-list') ? '.done-list' : '.todo-list';
 
-  // 만약 .todo 안에 있는 항목이라면
-  if (clickedTodo.closest('.todo-list')) {
-    circleIcon.classList.remove('fa-circle');
-    circleIcon.classList.add('fa-check-circle');
-    $('.done-list').append(clickedTodo);
-  }
-  // 만약 .done-list 안에 있는 항목이라면
-  else if (clickedTodo.closest('.done-list')) {
-    circleIcon.classList.remove('fa-check-circle');
-    circleIcon.classList.add('fa-circle');
-    $('.todo-list').append(clickedTodo);
-  }
+  circleIcon.classList.toggle('fa-circle');
+  circleIcon.classList.toggle('fa-check-circle');
+  $(targetList).append(clickedTodo);
 
   updateListCount();
 };
 
 const deleteTodo = (e) => {
-  const clickedTodo = e.target.parentNode;
+  const clickedTodo = e.target.closest('li');
   clickedTodo.remove();
 
   updateListCount();
 };
 
+// 할 일 리스트 개수 업데이트
 const updateListCount = () => {
-  $('.todo-count').textContent = '/ ' + $('.todo-list').childElementCount + '개';
-  $('.done-count').textContent = '/' + $('.done-list').childElementCount + '개';
+  $('.todo-count').textContent = `/ ${$('.todo-list').childElementCount}개`;
+  $('.done-count').textContent = `/ ${$('.done-list').childElementCount} 개`;
 };
 
 const showUserName = () => {
   const userName = prompt('이름을 알려주세요!');
   if (userName) {
-    $('.userName').textContent = userName + '의 ';
+    $('.userName').textContent = `${userName}의 `;
   }
 };
 
-showUserName();
-$('.date').textContent = getTodayDate();
-$('.input-form').addEventListener('submit', addTodo);
+// 초기 실행 함수
+const init = () => {
+  showUserName();
+  $('.date').textContent = getTodayDate();
+  $('.input-form').addEventListener('submit', addTodo);
+};
+
+// 초기 실행
+init();
