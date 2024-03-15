@@ -2,6 +2,7 @@ body {
   background-color: rgb(231, 244, 253);
   padding: 10px;
   font-family: 'Pretendard';
+  overflow: hidden;
 }
 
 .container {
@@ -53,13 +54,14 @@ body {
 }
 
 .todo-item {
-  padding: 5px;
+  padding: 8px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
 .todo-text {
+  margin-left: 5px;
   font-size: 15px;
 }
 
@@ -67,18 +69,38 @@ body {
   text-decoration: line-through;
 }
 
+.buttons-container {
+  display: flex;
+}
+
 .delete-btn {
-  margin-left: auto;
   background-image: url('img/trash.svg');
   background-color: transparent;
-  color: white;
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
   cursor: pointer;
   width: 20px;
   height: 20px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.check-btn {
+  background-image: url('img/check.svg');
+  background-color: transparent;
+  border: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 7px;
+}
+
+.text-container {
+  width: 365px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
