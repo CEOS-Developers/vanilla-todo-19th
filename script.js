@@ -8,12 +8,14 @@ let doneArr = [];
 // 오늘 날짜 반환 함수
 const getTodayDate = () => {
   const today = new Date();
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
 
   const year = today.getFullYear();
   const month = ("0" + (today.getMonth() + 1)).slice(-2);
   const day = ("0" + today.getDate()).slice(-2);
+  const dayOfWeek = week[today.getDay()];
 
-  return `${year}.${month}.${day}`;
+  https: return `${year}.${month}.${day} ${dayOfWeek}요일`;
 };
 
 // Local Storage에 저장
