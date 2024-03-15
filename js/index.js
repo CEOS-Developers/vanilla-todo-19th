@@ -4,8 +4,8 @@ import { $ } from './util.js';
 const getTodayDate = () => {
   const today = new Date();
   const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString();
-  const date = today.getDate().toString();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const date = today.getDate().toString().padStart(2, '0');
 
   const dayToString = ['일', '월', '화', '수', '목', '금', '토'];
   const day = dayToString[today.getDay()];
@@ -20,14 +20,14 @@ const createTodo = (text) => {
   const circleIcon = document.createElement('i');
   circleIcon.classList.add('fa-regular', 'fa-circle', 'cursor-pointer');
 
-  newTodoItem.appendChild(circleIcon);
+  newTodoItem.append(circleIcon);
 
   const todoText = document.createTextNode(text);
-  newTodoItem.appendChild(todoText);
+  newTodoItem.append(todoText);
 
   const trashIcon = document.createElement('i');
   trashIcon.classList.add('fa-solid', 'fa-trash-can', 'cursor-pointer');
-  newTodoItem.appendChild(trashIcon);
+  newTodoItem.append(trashIcon);
 
   return newTodoItem;
 };
@@ -51,6 +51,7 @@ const addTodo = (e) => {
   newTodoItem.querySelector('.fa-trash-can').addEventListener('click', deleteTodo);
 
   updateListCount();
+  saveToLocalStorage();
 };
 
 // 할 일 이동 이벤트 핸들러
@@ -64,13 +65,16 @@ const moveTodo = (e) => {
   $(targetList).append(clickedTodo);
 
   updateListCount();
+  saveToLocalStorage();
 };
 
+// 할 일 삭제 이벤트 핸들러
 const deleteTodo = (e) => {
   const clickedTodo = e.target.closest('li');
   clickedTodo.remove();
 
   updateListCount();
+  saveToLocalStorage();
 };
 
 // 할 일 리스트 개수 업데이트
@@ -79,10 +83,37 @@ const updateListCount = () => {
   $('.done-count').textContent = `/ ${$('.done-list').childElementCount} 개`;
 };
 
+// Local Storage에 저장
+const saveToLocalStorage = () => {
+  const todoListItems = Array.from($('.todo-list').children).map((todo) => todo.textContent);
+  const doneListItems = Array.from($('.done-list').children).map((todo) => todo.textContent);
+
+  localStorage.setItem('todoList', JSON.stringify(todoListItems));
+  localStorage.setItem('doneList', JSON.stringify(doneListItems));
+};
+
+// Local Storage에서 할 일 목록 불러오기
+const loadFromLocalStorage = () => {
+  const todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+  todoList.forEach((item) => $('.todo-list').append(createTodo(item)));
+
+  const doneList = JSON.parse(localStorage.getItem('doneList')) || [];
+  doneList.forEach((item) => $('.done-list').append(createTodo(item, true)));
+
+  updateListCount();
+};
+
+// 사용자 이름 설정
 const showUserName = () => {
-  const userName = prompt('이름을 알려주세요!');
-  if (userName) {
-    $('.userName').textContent = `${userName}의 `;
+  const savedUserName = localStorage.getItem('userName');
+  if (savedUserName) {
+    $('.userName').textContent = `${savedUserName}의 `;
+  } else {
+    const userName = prompt('이름을 알려주세요!');
+    if (userName) {
+      $('.userName').textContent = `${userName}의 `;
+      localStorage.setItem('userName', userName);
+    }
   }
 };
 
@@ -91,6 +122,7 @@ const init = () => {
   showUserName();
   $('.date').textContent = getTodayDate();
   $('.input-form').addEventListener('submit', addTodo);
+  loadTodoList();
 };
 
 // 초기 실행
