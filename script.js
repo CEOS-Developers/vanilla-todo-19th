@@ -1,6 +1,6 @@
+// 전역
 const todoUl = document.querySelector(".todo-box__todo ul");
 const doneUl = document.querySelector(".todo-box__done ul");
-
 // Todo, Done 리스트를 저장하는 전역 변수
 let todoArr = [];
 let doneArr = [];
@@ -50,7 +50,6 @@ const loadLocalStorage = () => {
 // Todo <-> Done 이동 함수
 const moveItem = (todoListNode) => {
   const isDone = todoListNode.classList.contains("done");
-  // ❗ ????아니 걍 appendChild하면 복사될줄 알았는데 자동으로 삭제도 되네???이게 뭔일임 질문하자
   if (isDone) {
     doneUl.appendChild(todoListNode);
     doneArr.push(todoListNode.textContent);
@@ -133,7 +132,7 @@ const createListElement = (txt) => {
   return todoListNode;
 };
 
-// 할일 추가 함수 ❗내부 분리할 필요 있을까?
+// 할일 추가 함수
 const addTodo = () => {
   // input에 입력한 값 가져오기
   const todoInput = document.querySelector(".input-box input");
