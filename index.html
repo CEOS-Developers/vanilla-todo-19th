@@ -5,10 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* svg 이미지를 cdn에서 끌어오는 것이라 html 파일을 parsing 할 때 해당 hover 스타일링이 미리 필요함 */
+      .checkImage:hover {
+        cursor: pointer;
+      }
+      .trashCanImage:hover {
+        cursor: pointer;
+      }
+      .backImage:hover {
+        cursor: pointer;
+      }
+    </style>
   </head>
-
   <body>
-    <div class="container"></div>
+    <main class="focus-container">
+      <section class="input-section">
+        <div class="appName-Date-section">
+          <span>Todo List Application</span>
+          <input type="date" class="date-input" />
+        </div>
+
+        <div class="input-box-section">
+          <input
+            type="text"
+            placeholder="Add your new todo list!"
+            class="todo-input"
+          />
+          <img
+            src="./assets/images/circle-plus-solid.svg"
+            alt="add button"
+            class="submit-button"
+          />
+        </div>
+      </section>
+
+      <section class="list-section scroll-box">
+        <div class="todo-area area scroll-box">
+          <span class="label-span">Todo</span>
+          <div class="showing-list-area scroll-box">
+            <!-- <div>this is todo area</div> -->
+          </div>
+        </div>
+
+        <div class="done-area area scroll-box">
+          <span class="label-span">Done</span>
+          <div class="showing-list-area scroll-box">
+            <!-- <div>this is done area</div> -->
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
