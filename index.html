@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<title>ToDo List App</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div class="calendar-section">
+				<input type="date" id="datePicker" />
+			</div>
+			<input type="text" id="sectionInput" placeholder="Category Name" />
+			<button id="addSectionBtn">카테고리 추가</button>
+			<div id="todoSections"></div>
+		</div>
 
-  <body>
-    <div class="container"></div>
-  </body>
-  <script src="script.js"></script>
+		<script src="script.js"></script>
+	</body>
 </html>
