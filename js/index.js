@@ -62,12 +62,12 @@ const addItem = (e) => {
 // 할 일 이동 이벤트 핸들러
 const moveItem = (e) => {
   const circleIcon = e.target;
-  const clickedTodo = circleIcon.parentNode;
-  const targetList = clickedTodo.closest('.todo-list') ? '.done-list' : '.todo-list';
+  const clickedItem = circleIcon.parentNode;
+  const targetList = clickedItem.closest('.todo-list') ? '.done-list' : '.todo-list';
 
   circleIcon.classList.toggle('fa-circle');
   circleIcon.classList.toggle('fa-check-circle');
-  $(targetList).append(clickedTodo);
+  $(targetList).append(clickedItem);
 
   updateListCount();
   saveToLocalStorage();
@@ -75,8 +75,8 @@ const moveItem = (e) => {
 
 // 할 일 삭제 이벤트 핸들러
 const deleteItem = (e) => {
-  const clickedTodo = e.target.closest('li');
-  clickedTodo.remove();
+  const clickedItem = e.target.closest('li');
+  clickedItem.remove();
 
   updateListCount();
   saveToLocalStorage();
@@ -113,12 +113,12 @@ const showUserName = () => {
   const savedUserName = localStorage.getItem('userName');
   if (savedUserName) {
     $('.userName').textContent = `${savedUserName}의 `;
-  } else {
-    const userName = prompt('이름을 알려주세요!');
-    if (userName) {
-      $('.userName').textContent = `${userName}의 `;
-      localStorage.setItem('userName', userName);
-    }
+    return;
+  }
+  const userName = prompt('이름을 알려주세요!');
+  if (userName) {
+    $('.userName').textContent = `${userName}의 `;
+    localStorage.setItem('userName', userName);
   }
 };
 
@@ -129,6 +129,7 @@ const init = () => {
   $('.input-form').addEventListener('submit', addItem);
 
   loadFromLocalStorage();
+  addDragDropEvents();
 };
 
 // 초기 실행
