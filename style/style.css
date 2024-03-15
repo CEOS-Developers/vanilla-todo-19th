@@ -16,7 +16,7 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .container {
@@ -27,17 +27,46 @@ main {
   align-items: center;
   flex-direction: column;
 }
-.input-wrapper {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-}
 
 .input-form {
   display: flex;
   width: 100%;
-  padding: 1.2rem;
+  height: 7rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-wrapper {
+  display: flex;
+  height: 100%;
+  gap: 1rem;
+}
+
+.input {
+  width: 40rem;
+  padding: 1rem;
+  font-size: 2rem;
+  border-radius: 1rem;
+}
+.input:focus {
   border: 0.1rem solid #6d6afe;
+}
+
+.input::-webkit-input-placeholder {
+  font-size: 2rem;
+}
+
+.input-button {
+  width: 5rem;
+  padding: 0.2rem;
+  background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+  color: white;
+  font-size: 2rem;
+  font-weight: 200;
   border-radius: 1rem;
 }
 
@@ -47,22 +76,7 @@ main {
   justify-content: space-between;
 }
 
-.input {
-  width: 40rem;
-  height: 2.5rem;
-  padding: 1rem;
-  font-size: 1.5rem;
-}
-
-.input::-webkit-input-placeholder {
-  font-size: 1.5rem;
-}
-
-.input-button {
-  font-size: 2rem;
-}
-
-.list {
+.list-wrapper {
   display: flex;
   width: 20rem;
   height: 40rem;
@@ -72,16 +86,23 @@ main {
   align-items: center;
   flex-direction: column;
   border-radius: 2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   overflow: auto;
 }
 
 // 스크롤바 css가 안 먹는 이유를 모르겠음..
 /* 스크롤바 막대 */
+
 .list::-webkit-scrollbar-thumb {
   background-color: black; /*스크롤바의 색상*/
 }
 
-.list::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background-color: yellow; /*스크롤바 트랙 색상*/
 }
 
@@ -93,4 +114,18 @@ li {
   display: flex;
   font-size: 2rem;
   gap: 1rem;
+}
+
+.hidden {
+  display: none; /* 기본적으로는 숨김 */
+}
+
+.hidden:hover {
+  display: inline-block; /* 호버됐을 때 보이도록 변경 */
+}
+
+.error {
+  color: red;
+  font-size: 1.4rem;
+  margin-left: 0.4rem;
 }

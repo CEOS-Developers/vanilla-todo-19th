@@ -11,25 +11,29 @@
   <body class="container">
     <header class="flex-center">
       <p class="date flex-center" />
-      <h1>TODO-LIST</h1>
+      <h1><span class="userName"></span>TODO-LIST</h1>
     </header>
     <main>
       <form class="input-form flex-center">
-        <div class="input-wrapper">
-          <input class="input" placeholder="할 일 입력" />
-          <button class="input-button">입력</button>
+        <div class="input-container">
+          <div class="input-wrapper">
+            <input class="input" placeholder="할 일 입력" />
+            <button class="input-button">입력</button>
+          </div>
+          <p class="error"></p>
         </div>
-        <p class="error"></p>
       </form>
       <div class="list-container flex-center">
-        <ul class="list todo-list">
-          <h2 class="label">Todo</h2>
-        </ul>
-        <ul class="list done-list">
-          <h2 class="label">Done</h2>
-        </ul>
+        <div class="list-wrapper">
+          <h2 class="label">Todo <span class="todo-count"> / 0개</span></h2>
+          <ul class="list todo-list"></ul>
+        </div>
+        <div class="list-wrapper">
+          <h2 class="label">Done <span class="done-count"> / 0개</span></h2>
+          <ul class="list done-list"></ul>
+        </div>
       </div>
     </main>
   </body>
-  <script src="./js/script.js" type="module"></script>
+  <script src="./js/index.js" type="module"></script>
 </html>
