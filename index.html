@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+    <meta property="og:title" content="TODO-LIST" />
+    <meta property="og:url" content="https://vanilla-todo-19th-navy.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="오늘의 일정을 관리해보세요." />
   </head>
 
   <body>
-    <div class="container"></div>
+    <header class="flex-center">
+      <p class="date flex-center" />
+      <h1><span class="userName"></span>TODO-LIST</h1>
+    </header>
+    <main>
+      <form class="input-form flex-center">
+        <div class="input-container">
+          <div class="input-wrapper">
+            <input class="input" placeholder="할 일 입력" />
+            <button class="input-button">입력</button>
+          </div>
+          <p class="error"></p>
+        </div>
+      </form>
+      <div class="list-container flex-center">
+        <div class="list-wrapper">
+          <h2 class="label">Todo <span class="todo-count"> / 0개</span></h2>
+          <ul class="list todo-list"></ul>
+        </div>
+        <div class="list-wrapper">
+          <h2 class="label">Done <span class="done-count"> / 0개</span></h2>
+          <ul class="list done-list"></ul>
+        </div>
+      </div>
+    </main>
   </body>
-  <script src="script.js"></script>
+  <script src="./js/index.js" type="module"></script>
 </html>
