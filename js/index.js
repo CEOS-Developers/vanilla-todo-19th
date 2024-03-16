@@ -1,4 +1,4 @@
-import { $ } from './util.js';
+import { $, $all } from './util.js';
 
 // 오늘 날짜 문자열 반환
 const getTodayDate = () => {
@@ -16,6 +16,10 @@ const getTodayDate = () => {
 // 할 일 아이템 생성
 const createItem = (text, isDone = false) => {
   const newItem = document.createElement('li');
+
+  // draggable 속성 추가
+  newItem.setAttribute('draggable', true);
+  newItem.classList.add('draggable');
 
   // 동그라미 아이콘
   const circleIcon = document.createElement('i');
@@ -135,6 +139,47 @@ const showUserName = () => {
     $('.userName').textContent = `${userName}의 `;
     localStorage.setItem('userName', userName);
   }
+};
+
+const addDragDropEvents = () => {
+  const draggableItems = $all('.draggable');
+  const containers = $all('.list');
+
+  draggableItems.forEach((el) => {
+    el.addEventListener('dragstart', () => {
+      el.classList.add('dragging');
+    });
+
+    el.addEventListener('dragend', () => {
+      el.classList.remove('dragging');
+    });
+  });
+
+  function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+    return draggableElements.reduce(
+      (closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      },
+      { offset: Number.NEGATIVE_INFINITY },
+    ).element;
+  }
+
+  containers.forEach((container) => {
+    container.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      const afterElement = getDragAfterElement(container, e.clientY);
+      const draggable = document.querySelector('.dragging');
+      container.insertBefore(draggable, afterElement);
+    });
+  });
 };
 
 // 초기 실행 함수

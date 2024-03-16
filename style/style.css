@@ -4,6 +4,12 @@
 
 body {
   background: #f0f6ff;
+  display: flex;
+  padding: 3rem 0;
+
+  gap: 2rem;
+  align-items: center;
+  flex-direction: column;
 }
 
 header {
@@ -17,15 +23,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-}
-
-.container {
-  display: flex;
-  padding: 3rem 0;
-
-  gap: 2rem;
-  align-items: center;
-  flex-direction: column;
 }
 
 .input-form {
@@ -98,11 +95,11 @@ main {
 // 스크롤바 css가 안 먹는 이유를 모르겠음..
 /* 스크롤바 막대 */
 
-.list::-webkit-scrollbar-thumb {
+ul::-webkit-scrollbar-thumb {
   background-color: black; /*스크롤바의 색상*/
 }
 
-::-webkit-scrollbar-track {
+ul::-webkit-scrollbar-track {
   background-color: yellow; /*스크롤바 트랙 색상*/
 }
 
@@ -116,16 +113,17 @@ li {
   gap: 1rem;
 }
 
-.hidden {
-  display: none; /* 기본적으로는 숨김 */
-}
-
-.hidden:hover {
-  display: inline-block; /* 호버됐을 때 보이도록 변경 */
-}
-
 .error {
   color: red;
   font-size: 1.4rem;
   margin-left: 0.4rem;
+}
+
+.draggable {
+  cursor: move;
+}
+
+.draggable.dragging {
+  opacity: 0.5;
+  border: 2px dashed red;
 }
