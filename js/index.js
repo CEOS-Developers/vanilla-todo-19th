@@ -15,32 +15,39 @@ const getTodayDate = () => {
 
 // 할 일 아이템 생성
 const createItem = (text, isDone = false) => {
-  const newTodoItem = document.createElement('li');
+  const newItem = document.createElement('li');
 
+  // 동그라미 아이콘
   const circleIcon = document.createElement('i');
   circleIcon.classList.add('fa-regular', 'fa-circle', 'cursor-pointer');
 
   if (isDone) {
     circleIcon.classList.add('fa-check-circle');
   }
+  // 누르면 done으로 이동하는 이벤트 리스너 등록
   circleIcon.addEventListener('click', moveItem);
-  newTodoItem.append(circleIcon);
+  newItem.append(circleIcon);
 
+  // 입력받은 Text
   const todoText = document.createTextNode(text);
-  newTodoItem.append(todoText);
+  newItem.append(todoText);
 
+  // 쓰레기통 아이콘
   const trashIcon = document.createElement('i');
   trashIcon.classList.add('fa-solid', 'fa-trash-can', 'cursor-pointer');
-  trashIcon.addEventListener('click', deleteItem);
-  newTodoItem.append(trashIcon);
 
-  return newTodoItem;
+  // 누르면 삭제
+  trashIcon.addEventListener('click', deleteItem);
+  newItem.append(trashIcon);
+
+  return newItem;
 };
 
 // 할 일 추가 이벤트 핸들러
 const addItem = (e) => {
   e.preventDefault();
 
+  // 빈 값 입력시 에러 처리
   const inputValue = $('.input').value.trim();
   if (!inputValue) {
     $('.error').textContent = '내용을 입력해주세요';
@@ -48,12 +55,14 @@ const addItem = (e) => {
   }
   $('.error').textContent = '';
 
-  const newTodoItem = createItem(inputValue);
-  $('.todo-list').append(newTodoItem);
-  $('.input').value = '';
+  // 새로운 list 아이템  만들기
+  const newItem = createItem(inputValue);
 
-  newTodoItem.querySelector('.fa-circle').addEventListener('click', moveItem);
-  newTodoItem.querySelector('.fa-trash-can').addEventListener('click', deleteItem);
+  // list에 추가
+  $('.todo-list').append(newItem);
+
+  // 인풋 비워주기
+  $('.input').value = '';
 
   updateListCount();
   saveToLocalStorage();
@@ -62,9 +71,14 @@ const addItem = (e) => {
 // 할 일 이동 이벤트 핸들러
 const moveItem = (e) => {
   const circleIcon = e.target;
+
+  // 부모 요소 찾기 (아이콘의 부모 요소가 li)
   const clickedItem = circleIcon.parentNode;
+
+  // 이동할 리스트 정하기
   const targetList = clickedItem.closest('.todo-list') ? '.done-list' : '.todo-list';
 
+  // 동그라미 <-> 체크 동그라미
   circleIcon.classList.toggle('fa-circle');
   circleIcon.classList.toggle('fa-check-circle');
   $(targetList).append(clickedItem);
@@ -75,6 +89,7 @@ const moveItem = (e) => {
 
 // 할 일 삭제 이벤트 핸들러
 const deleteItem = (e) => {
+  // 쓰레기통 아이콘의 부모 요소 찾기
   const clickedItem = e.target.closest('li');
   clickedItem.remove();
 
