@@ -98,6 +98,7 @@ i:nth-child(3) {
 }
 
 .trash {
+  margin-left: 36rem;
   padding: 0.3rem 1rem;
   border: 1px solid rgb(33 109 176);
   border-radius: 0.5rem;
