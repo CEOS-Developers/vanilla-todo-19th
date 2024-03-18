@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>과제1. VanillaJS TODO</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="container"></div>
+    <header>
+      <h1>TODO LIST</h1>
+    </header>
+    <section class="history"></section>
+    <hr />
+    <section class="edit">
+      <nav class="date"></nav>
+      <section class="list">
+        <form>
+          <input name="schedule" type="checkbox" id="schedule" checked />
+          <label for="schedule">SCHEDULE</label>
+          <input name="done" type="checkbox" id="done" checked />
+          <label for="done">DONE</label>
+        </form>
+        <ul class="scroll-box"></ul>
+      </section>
+    </section>
+    <footer>
+      <button type="button">ADD</button>
+    </footer>
   </body>
+  <section class="edit-modal-bg">
+    <section class="edit-modal">
+      <h2>Things to be done</h2>
+      <form>
+        <label for="description">Description</label>
+        <input type="text" id="addDescription" />
+      </form>
+      <div class="edit-modal-btn">
+        <button type="button" class="save-btn">SAVE</button>
+        <button type="button" class="close-btn">CLOSE</button>
+      </div>
+    </section>
+  </section>
   <script src="script.js"></script>
 </html>
