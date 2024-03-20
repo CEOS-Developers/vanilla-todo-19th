@@ -128,6 +128,7 @@ header .date /*가독성을 위해 header를 붙여줌*/ {
 .todo-box li span {
   cursor: pointer;
   transition: color 0.1s ease-out;
+  word-break: break-all;
 }
 
 .todo-box li button {
