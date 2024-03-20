@@ -75,7 +75,7 @@ header .date /*가독성을 위해 header를 붙여줌*/ {
   padding: 15px 10px 6px 10px;
 }
 
-.progess-box__bar-whole {
+.progress-box__bar-whole {
   background-color: #c0c0c0;
   border-radius: 10px;
   height: 15px;
