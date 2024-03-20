@@ -26,8 +26,8 @@ const setLocalStorage = () => {
 
 // Local Storage 불러오기
 const loadLocalStorage = () => {
-  const todo = JSON.parse(localStorage.getItem("todo"));
-  const done = JSON.parse(localStorage.getItem("done"));
+  const todo = JSON.parse(localStorage.getItem("todo")) || [];
+  const done = JSON.parse(localStorage.getItem("done")) || [];
 
   // todo 불러오기
   todo.forEach((element) => {
