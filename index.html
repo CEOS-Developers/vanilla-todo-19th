@@ -3,12 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>아기자기 TODO</title>
+    <link rel="icon" href="/src/favicon.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <header>
+        <h2>아기자기 TODO</h2>
+        <span class="date"></span>
+      </header>
+      <main>
+        <section class="input-box">
+          <i class="fa-solid fa-paw"></i>
+          <input />
+          <button><i class="fa-solid fa-circle-plus fa-lg"></i></button>
+        </section>
+        <section class="progress-box">
+          <span class="progress-box__text"></span>
+          <span class="progress-box__bar-whole">
+            <span class="progress-box__bar-done"></span>
+          </span>
+          <span class="progress-box__count"></span>
+        </section>
+        <section class="todo-box">
+          <div class="todo-box__todo">
+            <h3>TODO</h3>
+            <ul></ul>
+          </div>
+          <div class="todo-box__line"></div>
+          <div class="todo-box__done">
+            <h3>DONE</h3>
+            <ul></ul>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
   <script src="script.js"></script>
+  <script
+    src="https://kit.fontawesome.com/4e5b2f86bb.js"
+    crossorigin="anonymous"
+  ></script>
 </html>

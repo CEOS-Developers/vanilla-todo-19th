@@ -1,1 +1,144 @@
-/* 본인의 디자인 감각을 최대한 발휘해주세요! */
+@import "reset.css";
+
+@font-face {
+  font-family: "UhBeepuding";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "UhBeepuding";
+}
+
+body {
+  background-color: #ffec9d;
+}
+
+.container {
+  display: grid;
+  row-gap: 30px;
+  max-width: 70%;
+  margin: 50px auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #7d7e7e;
+}
+
+header h2 {
+  font-size: 24px;
+}
+
+header .date /*가독성을 위해 header를 붙여줌*/ {
+  font-size: 20px;
+}
+
+/*Todo Input*/
+.input-box {
+  background-color: #c0e0fe;
+  border-radius: 10px;
+  height: 40px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 10px;
+  padding: 0 10px;
+}
+
+.input-box input {
+  border: none;
+  border-bottom: 1px solid #7d7e7e;
+  background-color: transparent;
+  outline: none;
+  font-size: 14px;
+  padding: 3px 2px;
+}
+
+.input-box button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/*Progress Bar*/
+.progress-box {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  column-gap: 10px;
+  padding: 15px 10px 6px 10px;
+}
+
+.progress-box__bar-whole {
+  background-color: #c0c0c0;
+  border-radius: 10px;
+  height: 15px;
+  position: relative;
+}
+
+.progress-box__bar-done {
+  background-color: #7f7f7f;
+  border-radius: 10px;
+  height: inherit;
+  position: absolute;
+  transition: width 0.4s ease-in-out;
+}
+
+/*Todo Box*/
+.todo-box {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: 10px;
+  background-color: #fcf4db;
+  border-radius: 10px;
+  min-height: 400px;
+  padding: 30px;
+}
+
+.todo-box h3 {
+  font-size: 23px;
+  padding-bottom: 17px;
+}
+
+.todo-box__line {
+  border: 1px dashed rgba(125, 126, 126, 0.5);
+  margin: 5px 20px;
+}
+
+.todo-box ul {
+  display: grid;
+  row-gap: 10px;
+}
+
+.todo-box li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.todo-box li:hover {
+  color: #6a9fdc;
+}
+
+.todo-box li span {
+  cursor: pointer;
+  transition: color 0.1s ease-out;
+  word-break: break-all;
+}
+
+.todo-box li button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.todo-box li:hover button {
+  opacity: 1;
+}
