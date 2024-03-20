@@ -84,16 +84,21 @@ const updateItemCount = () => {
   }
 };
 
+const updateItems = () => {
+  // Progess bar 업데이트
+  updateItemCount();
+  // Local Storage 업데이트
+  setLocalStorage();
+};
+
 // Todo 또는 Done class 토글 함수
 const toggleTodo = (e) => {
   const todoListNode = e.target.closest("li");
   todoListNode.classList.toggle("done");
   // 이동
   moveItem(todoListNode);
-  // Progess bar 업데이트
-  updateItemCount();
-  // Local Storage 업데이트
-  setLocalStorage();
+
+  updateItems();
 };
 
 // 아이템 삭제 함수
@@ -109,10 +114,7 @@ const deleteItem = (e) => {
     todoArr = todoArr.filter((element) => element !== todoListNode.textContent);
   }
 
-  // Progess bar 업데이트
-  updateItemCount();
-  // Local Storage 업데이트
-  setLocalStorage();
+  updateItems();
 };
 
 // Todo/Done 노드 생성 & 계층 세팅 함수
@@ -153,10 +155,7 @@ const addTodo = () => {
   todoUl.appendChild(createListElement(todoInputText));
   todoArr.push(todoInputText);
 
-  // Progess bar 업데이트
-  updateItemCount();
-  // Local Storage 업데이트
-  setLocalStorage();
+  updateItems();
 
   // input value 초기화
   todoInput.value = "";
