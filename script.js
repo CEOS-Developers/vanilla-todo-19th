@@ -62,21 +62,21 @@ const moveItem = (todoListNode) => {
 };
 
 // Todo Progress Bar 업데이트 함수
+const progressBarCount = document.querySelector(".progress-box__count");
+const progressBarDone = document.querySelector(".progress-box__bar-done");
+const progressText = document.querySelector(".progress-box__text");
 const updateItemCount = () => {
   const todoCount = todoUl.childElementCount;
   const doneCount = doneUl.childElementCount;
   const totalCount = todoCount + doneCount;
 
-  const progressBarCount = document.querySelector(".progress-box__count");
   progressBarCount.textContent = `${doneCount} / ${totalCount}`;
 
-  const progressBarDone = document.querySelector(".progress-box__bar-done");
   let doneRatio = 0;
   if (totalCount !== 0) doneRatio = (doneCount / totalCount) * 100;
   progressBarDone.style.width = `${doneRatio}%`;
 
   // 텍스트 세팅
-  const progressText = document.querySelector(".progress-box__text");
   if (totalCount !== 0 && doneCount === totalCount) {
     progressText.textContent = "대단해요 !";
   } else {
