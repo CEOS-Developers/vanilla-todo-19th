@@ -86,7 +86,7 @@ const updateItemCount = () => {
 
 // Todo 또는 Done class 토글 함수
 const toggleTodo = (e) => {
-  const todoListNode = e.target.parentElement;
+  const todoListNode = e.target.closest("li");
   todoListNode.classList.toggle("done");
   // 이동
   moveItem(todoListNode);
@@ -98,7 +98,7 @@ const toggleTodo = (e) => {
 
 // 아이템 삭제 함수
 const deleteItem = (e) => {
-  const todoListNode = e.target.parentElement.parentElement;
+  const todoListNode = e.target.closest("li");
   // 삭제
   todoListNode.remove();
 
