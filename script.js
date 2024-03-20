@@ -15,7 +15,7 @@ const getTodayDate = () => {
   const day = ("0" + today.getDate()).slice(-2);
   const dayOfWeek = week[today.getDay()];
 
-  https: return `${year}.${month}.${day} ${dayOfWeek}요일`;
+  return `${year}.${month}.${day} ${dayOfWeek}요일`;
 };
 
 // Local Storage에 저장
