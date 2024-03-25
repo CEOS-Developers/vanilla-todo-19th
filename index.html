@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanilla Todo</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-wrapper">
+        <h2 id="title">투두리스트</h2>
+        <span id="taskInfo"></span>
+    </div>
+      <div id="date"></div>
+      <div class="input-container">
+        <input id="todoInput" type="text" class="todoInput" placeholder="오늘의 할일...">
+        <button id="addButton">
+          <img src="assets/Fire.png" alt="불" style="width: 20px; height: 20px;">
+        </button>
+      </div>
+      <div class="button-container">
+        <button id="trashButton">
+          <img src="assets/TrashCan.png" alt="휴지통" style="width: 20px; height: 20px;">
+        </button>
+        <button id="completeButton">
+          <img src="assets/Completed.png" alt="완료" style="width: 20px; height: 20px;">
+        </button>
+        <button id="resetButton">
+          <img src="assets/Reset.png" alt="초기화" style="width: 20px; height: 20px;">
+        </button> 
+      </div>
+    </div>
+    <div class="list-container">
+      <ul id="todoList"></ul>
+      <ul id="completedList"></ul>
+  </div>
+  <div class="footer">
+    <div id="progressBarContainer"></div>
+  </div>
 
-  <body>
-    <div class="container"></div>
-  </body>
+  </div>
+  
+
   <script src="script.js"></script>
+</body>
 </html>
